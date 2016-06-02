@@ -147,7 +147,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Laralib\L5scaffold\GeneratorsServiceProvider::class,
         /*
          * Application Service Providers...
          */
