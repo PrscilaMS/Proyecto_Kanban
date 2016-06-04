@@ -14,3 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource("usuarios","UsuarioController");
+
+Route::resource("proyectos","ProyectoController");
+
+Route::resource("tareas","TareaController");
+
+Route::resource("tallas","TallaController");
+
+Route::resource("historicos","HistoricoController");
+
+Route::resource("tarea_historicos","TareaHistoricoController");
+
+Route::resource("equipos","EquipoController");
+
+Route::resource("versions","VersionController");
+
+Route::resource("historico_resumens","HistoricoResumanController");
