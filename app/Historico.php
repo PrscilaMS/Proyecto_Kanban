@@ -16,10 +16,6 @@ class Historico extends Model
             ->update(['NOMBRE_HISTORICO' => $historico->NOMBRE_HISTORICO, 'FECHA_INICIO' => $historico->FECHA_INICIO, 'FECHA_FINAL' => $historico->FECHA_FINAL, 'DURACION_TOTAL' => $historico->DURACION_TOTAL]);
       }
       
-      public $timestamps = false;
-      protected $fillable = array('NOMBRE_HISTORICO', 'FECHA_INICIO', 'FECHA_FINAL', 'DURACION_TOTAL');
-      public $timestamps = false;
-      protected $fillable = array('NOMBRE_HISTORICO', 'FECHA_INICIO', 'FECHA_FINAL', 'DURACION_TOTAL');
       
    
       
