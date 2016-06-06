@@ -15,7 +15,7 @@ class EquipoController extends Controller {
 	 */
 	public function index()
 	{
-		$equipos = Equipo::orderBy('id', 'desc')->paginate(10);
+		$equipos = Equipo::orderBy('ID_EQUIPO', 'asc')->paginate(10);
 
 		return view('equipos.index', compact('equipos'));
 	}
@@ -40,11 +40,12 @@ class EquipoController extends Controller {
 	{
 		$equipo = new Equipo();
 
-		$equipo->nombre = $request->input("nombre");
+		$equipo->NOMBRE_EQUIPO = $request->input("nombre");
 
 		$equipo->save();
 
-		return redirect()->route('equipos.index')->with('message', 'Item created successfully.');
+		\Flash::message('Equipo creado con éxito');
+		return redirect('equipos');
 	}
 
 	/**
@@ -55,7 +56,7 @@ class EquipoController extends Controller {
 	 */
 	public function show($id)
 	{
-		$equipo = Equipo::findOrFail($id);
+		$equipo = Equipo::where( 'ID_EQUIPO' , $id)->first();
 
 		return view('equipos.show', compact('equipo'));
 	}
@@ -68,7 +69,7 @@ class EquipoController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$equipo = Equipo::findOrFail($id);
+		$equipo = Equipo::where( 'ID_EQUIPO' , $id)->first();
 
 		return view('equipos.edit', compact('equipo'));
 	}
@@ -82,13 +83,14 @@ class EquipoController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
-		$equipo = Equipo::findOrFail($id);
+		$equipo = Equipo::where( 'ID_EQUIPO' , $id)->first();
 
-		$equipo->nombre = $request->input("nombre");
+		$equipo->NOMBRE_EQUIPO = $request->input("nombre");
+        Equipo::modificar($equipo);
+        
+		\Flash::message('Equipo actualizado con éxito');
+		return redirect('equipos');
 
-		$equipo->save();
-
-		return redirect()->route('equipos.index')->with('message', 'Item updated successfully.');
 	}
 
 	/**
@@ -99,10 +101,9 @@ class EquipoController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$equipo = Equipo::findOrFail($id);
-		$equipo->delete();
-
-		return redirect()->route('equipos.index')->with('message', 'Item deleted successfully.');
+		Equipo::eliminar($id);
+		\Flash::message('Equipo eliminado con éxito');
+		return redirect('equipos');
 	}
 
 }

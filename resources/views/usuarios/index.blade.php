@@ -1,5 +1,7 @@
 @extends('layout')
-
+<head>
+     <link rel="stylesheet" href="/css/main.css" />
+</head>
 @section('header')
     <div class="page-header clearfix">
         <h1>
@@ -17,7 +19,6 @@
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>NOMBRE</th>
                         <th>APELLIDOS</th>
                         <th>CORREO</th>
@@ -30,16 +31,15 @@
                     <tbody>
                         @foreach($usuarios as $usuario)
                             <tr>
-                                <td>{{$usuario->id}}</td>
-                                <td>{{$usuario->nombre}}</td>
-                    <td>{{$usuario->apellidos}}</td>
-                    <td>{{$usuario->correo}}</td>
-                    <td>{{$usuario->contrasena}}</td>
-                    <td>{{$usuario->tipo}}</td>
+                                <td>{{$usuario[0]->NOMBRE_USUARIO}}</td>
+                    <td>{{$usuario[0]->APELLIDO}}</td>
+                    <td>{{$usuario[0]->CORREO}}</td>
+                    <td>{{$usuario[0]->CONTRASENNA}}</td>
+                    <td>{{$usuario[0]->TIPO}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('usuarios.show', $usuario->id) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
-                                    <a class="btn btn-xs btn-warning" href="{{ route('usuarios.edit', $usuario->id) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>
-                                    <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                    <a class="btn btn-xs btn-primary" href="{{ route('usuarios.show', $usuario[0]->CORREO) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
+                                    <a class="btn btn-xs btn-warning" href="{{ route('usuarios.edit', $usuario[0]->CORREO) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                                    <form action="{{ route('usuarios.destroy', $usuario[0]->CORREO) }}" method="POST" style="display: inline;" onsubmit="if(confirm('¿Esta seguro que desea eliminar este elemnto?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>

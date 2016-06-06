@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> Equipos / Create </h1>
+        <h1><i class="glyphicon glyphicon-plus"></i> Equipos / Crear </h1>
     </div>
 @endsection
 
@@ -23,8 +23,8 @@
                        @endif
                     </div>
                 <div class="well well-sm">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <a class="btn btn-link pull-right" href="{{ route('equipos.index') }}"><i class="glyphicon glyphicon-backward"></i> Back</a>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <a class="btn btn-link pull-right" href="{{ route('equipos.index') }}"><i class="glyphicon glyphicon-backward"></i> Atrás</a>
                 </div>
             </form>
 

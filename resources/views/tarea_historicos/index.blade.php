@@ -3,8 +3,8 @@
 @section('header')
     <div class="page-header clearfix">
         <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> TareaHistoricos
-            <a class="btn btn-success pull-right" href="{{ route('tarea_historicos.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+            <i class="glyphicon glyphicon-align-justify"></i> Tarea de Histórico
+            <a class="btn btn-success pull-right" href="{{ route('tarea_historicos.create') }}"><i class="glyphicon glyphicon-plus"></i> Agregar tarea</a>
         </h1>
 
     </div>
@@ -17,36 +17,36 @@
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>NOMBRE</th>
-                        <th>DURACIONREQUERIMIENTOS</th>
-                        <th>DURACIONDISENO</th>
-                        <th>DURACIONDESARROLLO</th>
-                        <th>DURACIONPRUEBAS</th>
-                        <th>DURACIONIMPLEMENTACION</th>
-                        <th>DURACIONMANTENIMIENTO</th>
-                            <th class="text-right">OPTIONS</th>
+                        <th>REQUERIMIENTOS</th>
+                        <th>DISEÑO</th>
+                        <th>DESARROLLO</th>
+                        <th>PRUEBAS</th>
+                        <th>IMPLEMENTACION</th>
+                        <th>MANTENIMIENTO</th>
+                            <th class="text-right">OPCIONES</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach($tarea_historicos as $tarea_historico)
                             <tr>
-                                <td>{{$tarea_historico->id}}</td>
-                                <td>{{$tarea_historico->nombre}}</td>
-                    <td>{{$tarea_historico->duracionrequerimientos}}</td>
-                    <td>{{$tarea_historico->duraciondiseno}}</td>
-                    <td>{{$tarea_historico->duraciondesarrollo}}</td>
-                    <td>{{$tarea_historico->duracionpruebas}}</td>
-                    <td>{{$tarea_historico->duracionimplementacion}}</td>
-                    <td>{{$tarea_historico->duracionmantenimiento}}</td>
+                                <td>{{$tarea_historico->NOMBRE_TAREA_HISTRICO}}</td>
+                    <td>{{$tarea_historico->DURACION_REQUERIMIENTOS}}</td>
+                    <td>{{$tarea_historico->DURACION_DISENO}}</td>
+                    <td>{{$tarea_historico->DURACION_DESARROLLO}}</td>
+                    <td>{{$tarea_historico->DURACION_PRUEBAS}}</td>
+                    <td>{{$tarea_historico->DURACION_IMPLEMENTACION}}</td>
+                    <td>{{$tarea_historico->DURACION_MANTENIMIENTO}}</td>
+                    
+        
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('tarea_historicos.show', $tarea_historico->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
-                                    <a class="btn btn-xs btn-warning" href="{{ route('tarea_historicos.edit', $tarea_historico->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                                    <form action="{{ route('tarea_historicos.destroy', $tarea_historico->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                    <a class="btn btn-xs btn-primary" href="{{ route('tarea_historicos.show', $tarea_historico->ID_TAREA_HISTORICO) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
+                                    <a class="btn btn-xs btn-warning" href="{{ route('tarea_historicos.edit', $tarea_historico->ID_TAREA_HISTORICO) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                                    <form action="{{ route('tarea_historicos.destroy', $tarea_historico->ID_TAREA_HISTORICO) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

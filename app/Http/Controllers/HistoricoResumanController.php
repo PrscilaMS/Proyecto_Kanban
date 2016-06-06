@@ -15,7 +15,7 @@ class HistoricoResumanController extends Controller {
 	 */
 	public function index()
 	{
-		$historico_resumens = HistoricoResuman::orderBy('id', 'desc')->paginate(10);
+		$historico_resumens = HistoricoResumens::orderBy('id', 'desc')->paginate(10);
 
 		return view('historico_resumens.index', compact('historico_resumens'));
 	}

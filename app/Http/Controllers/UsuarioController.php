@@ -15,7 +15,7 @@ class UsuarioController extends Controller {
 	 */
 	public function index()
 	{
-		$usuarios = Usuario::orderBy('id', 'desc')->paginate(10);
+		$usuarios= \DB::table('usuarios')->select('*');
 
 		return view('usuarios.index', compact('usuarios'));
 	}

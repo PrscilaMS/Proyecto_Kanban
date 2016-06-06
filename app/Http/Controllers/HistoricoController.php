@@ -15,7 +15,7 @@ class HistoricoController extends Controller {
 	 */
 	public function index()
 	{
-		$historicos = Historico::orderBy('id', 'desc')->paginate(10);
+		$historicos = Historico::orderBy('ID_HISTORICO', 'desc')->paginate(10);
 
 		return view('historicos.index', compact('historicos'));
 	}
@@ -40,14 +40,14 @@ class HistoricoController extends Controller {
 	{
 		$historico = new Historico();
 
-		$historico->nombre = $request->input("nombre");
-        $historico->fechaInicio = $request->input("fechaInicio");
-        $historico->fechaFinal = $request->input("fechaFinal");
-        $historico->duracionTotal = $request->input("duracionTotal");
+		$historico->NOMBRE_HISTORICO = $request->input("nombre");
+        $historico->FECHA_INICIO = $request->input("fechainicio");
+        $historico->FECHA_FINAL = $request->input("fechafinal");
+        $historico->DURACION_TOTAL = $request->input("duraciontotal");
 
 		$historico->save();
-
-		return redirect()->route('historicos.index')->with('message', 'Item created successfully.');
+		\Flash::message('Historico insertado con éxito');
+		return redirect('historicos');
 	}
 
 	/**
@@ -58,7 +58,7 @@ class HistoricoController extends Controller {
 	 */
 	public function show($id)
 	{
-		$historico = Historico::findOrFail($id);
+		$historico = Historico::where('ID_HISTORICO', $id)->first();
 
 		return view('historicos.show', compact('historico'));
 	}
@@ -71,7 +71,7 @@ class HistoricoController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$historico = Historico::findOrFail($id);
+		$historico = Historico::where('ID_HISTORICO', $id)->first();
 
 		return view('historicos.edit', compact('historico'));
 	}
@@ -85,16 +85,16 @@ class HistoricoController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
-		$historico = Historico::findOrFail($id);
+		$historico = Historico::where('ID_HISTORICO', $id)->first();
+		
+		$historico->NOMBRE_HISTORICO = $request->input("nombre");
+        $historico->FECHA_INICIO = $request->input("fechainicio");
+        $historico->FECHA_FINAL = $request->input("fechafinal");
+        $historico->DURACION_TOTAL = $request->input("duraciontotal");
 
-		$historico->nombre = $request->input("nombre");
-        $historico->fechaInicio = $request->input("fechaInicio");
-        $historico->fechaFinal = $request->input("fechaFinal");
-        $historico->duracionTotal = $request->input("duracionTotal");
-
-		$historico->save();
-
-		return redirect()->route('historicos.index')->with('message', 'Item updated successfully.');
+		Historico::modificar($historico);
+		\Flash::message('Historico modificado con éxito');
+		return redirect('historicos');
 	}
 
 	/**
@@ -105,10 +105,9 @@ class HistoricoController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$historico = Historico::findOrFail($id);
-		$historico->delete();
-
-		return redirect()->route('historicos.index')->with('message', 'Item deleted successfully.');
+		Historico::eliminar($id);
+		\Flash::message('Historico eliminado con éxito');
+		return redirect('historicos');
 	}
 
 }
