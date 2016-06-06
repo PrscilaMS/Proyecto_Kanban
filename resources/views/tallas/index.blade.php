@@ -17,24 +17,22 @@
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>SIGLA</th>
-                            <th class="text-right">OPTIONS</th>
+                            <th class="text-right">Opciones</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach($tallas as $talla)
                             <tr>
-                                <td>{{$talla->id}}</td>
-                                <td>{{$talla->sigla}}</td>
+                                <td>{{$talla->NOMBRE_TALLA}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('tallas.show', $talla->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
-                                    <a class="btn btn-xs btn-warning" href="{{ route('tallas.edit', $talla->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                                    <form action="{{ route('tallas.destroy', $talla->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                    <a class="btn btn-xs btn-primary" href="{{ route('tallas.show', $talla->ID_TALLA) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
+                                    <a class="btn btn-xs btn-warning" href="{{ route('tallas.edit', $talla->ID_TALLA) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                                    <form action="{{ route('tallas.destroy', $talla->ID_TALLA) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

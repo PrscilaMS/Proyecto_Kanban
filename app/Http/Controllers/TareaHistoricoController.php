@@ -15,7 +15,7 @@ class TareaHistoricoController extends Controller {
 	 */
 	public function index()
 	{
-		$tarea_historicos = TareaHistorico::orderBy('id', 'desc')->paginate(10);
+		$tarea_historicos = TareaHistorico::orderBy('ID_TAREA_HISTORICO', 'asc')->paginate(10);
 
 		return view('tarea_historicos.index', compact('tarea_historicos'));
 	}
@@ -27,7 +27,9 @@ class TareaHistoricoController extends Controller {
 	 */
 	public function create()
 	{
-		return view('tarea_historicos.create');
+		
+			$tallas = Tala::all();
+		return view('tarea_historicos.create', compact('tallas'));
 	}
 
 	/**
@@ -40,17 +42,18 @@ class TareaHistoricoController extends Controller {
 	{
 		$tarea_historico = new TareaHistorico();
 
-		$tarea_historico->nombre = $request->input("nombre");
-        $tarea_historico->duracionRequerimientos = $request->input("duracionRequerimientos");
-        $tarea_historico->duracionDiseno = $request->input("duracionDiseno");
-        $tarea_historico->duracionDesarrollo = $request->input("duracionDesarrollo");
-        $tarea_historico->duracionPruebas = $request->input("duracionPruebas");
-        $tarea_historico->duracionImplementacion = $request->input("duracionImplementacion");
-        $tarea_historico->duracionMantenimiento = $request->input("duracionMantenimiento");
+		$tarea_historico->NOMBRE_TAREA_HISTRICO = $request->input("nombre");
+        $tarea_historico->DURACION_REQUERIMIENTOS = $request->input("duracionrequerimientos");
+        $tarea_historico->DURACION_DISENO = $request->input("duraciondiseno");
+        $tarea_historico->DURACION_DESARROLLO = $request->input("duraciondesarrollo");
+        $tarea_historico->DURACION_PRUEBAS = $request->input("duracionpruebas");
+        $tarea_historico->DURACION_IMPLEMENTACION = $request->input("duracionimplementacion");
+        $tarea_historico->DURACION_MANTENIMIENTO = $request->input("duracionmantenimiento");
 
 		$tarea_historico->save();
 
-		return redirect()->route('tarea_historicos.index')->with('message', 'Item created successfully.');
+		\Flash::message('Tarea creada con éxito');
+		return redirect('tarea_historicos');
 	}
 
 	/**
@@ -111,10 +114,9 @@ class TareaHistoricoController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$tarea_historico = TareaHistorico::findOrFail($id);
-		$tarea_historico->delete();
-
-		return redirect()->route('tarea_historicos.index')->with('message', 'Item deleted successfully.');
+		TareaHistorico::eliminar($id);
+		\Flash::message(' Tarea eliminada con éxito');
+		return redirect('equipos');
 	}
 
 }

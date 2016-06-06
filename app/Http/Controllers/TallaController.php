@@ -15,7 +15,7 @@ class TallaController extends Controller {
 	 */
 	public function index()
 	{
-		$tallas = Talla::orderBy('id', 'desc')->paginate(10);
+		$tallas = Talla::orderBy('ID_TALLA', 'desc')->paginate(10);
 
 		return view('tallas.index', compact('tallas'));
 	}
@@ -40,11 +40,11 @@ class TallaController extends Controller {
 	{
 		$talla = new Talla();
 
-		$talla->sigla = $request->input("sigla");
+		$talla->NOMBRE_TALLA = $request->input("sigla");
 
 		$talla->save();
-
-		return redirect()->route('tallas.index')->with('message', 'Item created successfully.');
+		\Flash::message('Talla insertada con éxito');
+		return redirect('tallas');
 	}
 
 	/**
@@ -55,7 +55,7 @@ class TallaController extends Controller {
 	 */
 	public function show($id)
 	{
-		$talla = Talla::findOrFail($id);
+		$talla = Talla::where('ID_TALLA', $id)->first();
 
 		return view('tallas.show', compact('talla'));
 	}
@@ -68,8 +68,7 @@ class TallaController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$talla = Talla::findOrFail($id);
-
+		$talla = Talla::where('ID_TALLA', $id)->first();
 		return view('tallas.edit', compact('talla'));
 	}
 
@@ -82,13 +81,13 @@ class TallaController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
-		$talla = Talla::findOrFail($id);
+		$talla = Talla::where('ID_TALLA', $id)->first();
 
-		$talla->sigla = $request->input("sigla");
+		$talla->NOMBRE_TALLA = $request->input("sigla");
 
-		$talla->save();
-
-		return redirect()->route('tallas.index')->with('message', 'Item updated successfully.');
+		Talla::modificar($talla);
+		\Flash::message('Talla modificada con éxito');
+		return redirect('tallas');
 	}
 
 	/**
@@ -99,10 +98,9 @@ class TallaController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$talla = Talla::findOrFail($id);
-		$talla->delete();
-
-		return redirect()->route('tallas.index')->with('message', 'Item deleted successfully.');
+		Talla::eliminar($id);
+		\Flash::message('Talla eliminada con éxito');
+		return redirect('tallas');
 	}
 
 }

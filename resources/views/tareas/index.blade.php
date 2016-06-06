@@ -17,7 +17,7 @@
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>ID TAREA</th>
                             <th>ENUNCIADO</th>
                             <th class="text-right">OPTIONS</th>
                         </tr>
@@ -26,11 +26,11 @@
                     <tbody>
                         @foreach($tareas as $tarea)
                             <tr>
-                                <td>{{$tarea->id}}</td>
+                                <td>{{$tarea->ID_TAREA}}</td>
                                 <td>{{$tarea->enunciado}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('tareas.show', $tarea->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
-                                    <a class="btn btn-xs btn-warning" href="{{ route('tareas.edit', $tarea->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                                    <a class="btn btn-xs btn-primary" href="{{ route('tareas.show', $tarea->ID_TAREA) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
+                                    <a class="btn btn-xs btn-warning" href="{{ route('tareas.edit', $tarea->ID_TAREA) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
                                     <form action="{{ route('tareas.destroy', $tarea->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
