@@ -47,7 +47,7 @@ class HistoricoController extends Controller {
 
 		$historico->save();
 		\Flash::message('Historico insertado con éxito');
-		return redirect('historicos');
+		return view('tarea_historicos.create');
 	}
 
 	/**
