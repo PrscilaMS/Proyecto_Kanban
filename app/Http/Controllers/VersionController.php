@@ -18,7 +18,7 @@ class VersionController extends Controller {
 		$versions = Version::orderBy('id', 'desc')->paginate(10);
 
 		return view('versions.index', compact('versions'));
-		// 4535e5rejr5hjfdjhfgyjfyjfuyj
+		// casa
 	}
 
 	/**
