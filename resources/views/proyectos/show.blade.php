@@ -1,13 +1,13 @@
 @extends('layout')
 @section('header')
 <div class="page-header">
-        <h1>Proyectos / Show #{{$proyecto->id}}</h1>
+        <h1>Proyecto #{{$proyecto->id}}</h1>
         <form action="{{ route('proyectos.destroy', $proyecto->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="btn-group pull-right" role="group" aria-label="...">
-                <a class="btn btn-warning btn-group" role="group" href="{{ route('proyectos.edit', $proyecto->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <button type="submit" class="btn btn-danger">Delete <i class="glyphicon glyphicon-trash"></i></button>
+                <a class="btn btn-warning btn-group" role="group" href="{{ route('proyectos.edit', $proyecto->id) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                <button type="submit" class="btn btn-danger">Eliminar <i class="glyphicon glyphicon-trash"></i></button>
             </div>
         </form>
     </div>
@@ -32,7 +32,7 @@
                 </div>
             </form>
 
-            <a class="btn btn-link" href="{{ route('proyectos.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
+            <a class="btn btn-link" href="{{ route('proyectos.index') }}"><i class="glyphicon glyphicon-backward"></i>  Volver</a>
 
         </div>
     </div>

@@ -15,7 +15,7 @@ class UsuarioController extends Controller {
 	 */
 	public function index()
 	{
-		$usuarios= \DB::table('usuarios')->select('*');
+		$usuarios= Usuario::orderBy('id', 'desc')->paginate(10);
 
 		return view('usuarios.index', compact('usuarios'));
 	}
@@ -40,15 +40,15 @@ class UsuarioController extends Controller {
 	{
 		$usuario = new Usuario();
 
-		$usuario->nombre = $request->input("nombre");
-        $usuario->apellidos = $request->input("apellidos");
-        $usuario->correo = $request->input("correo");
-        $usuario->contrasena = $request->input("contrasena");
-        $usuario->tipo = $request->input("tipo");
-
+		$usuario->NOMBRE_USUARIO = $request->input("nombre");
+        $usuario->APELLIDO = $request->input("apellidos");
+        $usuario->CORREO = $request->input("correo");
+        $contraCrypt = crypt($request->input("contrasena"));
+        $usuario->CONTRASENNA = $contraCrypt;
+        $usuario->TIPO = $request->input("tipo");
 		$usuario->save();
-
-		return redirect()->route('usuarios.index')->with('message', 'Item created successfully.');
+		\Flash::message('Usuario ingresado con éxito');
+		return redirect('usuarios');
 	}
 
 	/**
@@ -69,7 +69,7 @@ class UsuarioController extends Controller {
 	 *
 	 * @param  int  $id
 	 * @return Response
-	 */
+	 **/
 	public function edit($id)
 	{
 		$usuario = Usuario::findOrFail($id);
@@ -86,17 +86,15 @@ class UsuarioController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
-		$usuario = Usuario::findOrFail($id);
-
-		$usuario->nombre = $request->input("nombre");
-        $usuario->apellidos = $request->input("apellidos");
-        $usuario->correo = $request->input("correo");
-        $usuario->contrasena = $request->input("contrasena");
-        $usuario->tipo = $request->input("tipo");
-
-		$usuario->save();
-
-		return redirect()->route('usuarios.index')->with('message', 'Item updated successfully.');
+		$usuario = Usuario::where('CORREO', $id)->first();
+		$usuario->NOMBRE_USUARIO = $request->input("nombre");
+        $usuario->APELLIDO = $request->input("apellidos");
+        $contraCrypt = crypt($request->input("contrasena"));
+        $usuario->CONTRASENNA = $contraCrypt;
+        $usuario->TIPO = $request->input("tipo");
+        Usuario::modificar($usuario);
+		\Flash::message('Usuario modificado con éxito');
+		return redirect('usuarios');
 	}
 
 	/**

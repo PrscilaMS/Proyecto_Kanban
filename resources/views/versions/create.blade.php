@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> Versions / Create </h1>
+        <h1><i class="glyphicon glyphicon-plus"></i> Crear Versión </h1>
     </div>
 @endsection
 
@@ -52,7 +52,7 @@
                     </div>
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Create</button>
-                    <a class="btn btn-link pull-right" href="{{ route('versions.index') }}"><i class="glyphicon glyphicon-backward"></i> Back</a>
+                    <a class="btn btn-link pull-right" href="{{ route('versions.index') }}"><i class="glyphicon glyphicon-backward"></i> Volver</a>
                 </div>
             </form>
 

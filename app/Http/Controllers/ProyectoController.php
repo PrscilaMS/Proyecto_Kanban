@@ -4,6 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Proyecto;
+use App\Talla;
+use App\Equipo;
+use App\Version;
 use Illuminate\Http\Request;
 
 class ProyectoController extends Controller {
@@ -15,7 +18,7 @@ class ProyectoController extends Controller {
 	 */
 	public function index()
 	{
-		$proyectos = Proyecto::orderBy('id', 'desc')->paginate(10);
+		$proyectos = Proyecto::orderBy('ID_PROYECTO', 'asc')->paginate(10);
 
 		return view('proyectos.index', compact('proyectos'));
 	}
@@ -27,7 +30,9 @@ class ProyectoController extends Controller {
 	 */
 	public function create()
 	{
-		return view('proyectos.create');
+		$equipos = Equipo::all();
+		
+		return view('proyectos.create',compact('equipos'));
 	}
 
 	/**
@@ -39,13 +44,33 @@ class ProyectoController extends Controller {
 	public function store(Request $request)
 	{
 		$proyecto = new Proyecto();
+		$version = new Version();
 
-		$proyecto->nombre = $request->input("nombre");
-        $proyecto->fechaInicio = $request->input("fechaInicio");
+		$proyecto->NOMBRE_PROYECT = $request->input("nombre");
+        $proyecto->FECHA_INICIO = $request->input("fechainicio");
+        $proyecto->ID_EQUIPO = $request->input("equipo");
 
 		$proyecto->save();
+		
+		
+		$historico = ProyectoController::showByName($proyecto);
+		session(['id_proyecto' => $proyecto->ID_PROYECTO]);
+		
+		$tallas = Talla::all();
+		return redirect()->route('tareas.create')->with('message', 'Item created successfully.');
+	}
+	
+		/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function showByName($proyecto)
+	{
+		$proyecto = Proyecto::where('NOMBRE_PROYECT', $proyecto->NOMBRE_PROYECT)->first();
 
-		return redirect()->route('proyectos.index')->with('message', 'Item created successfully.');
+		return $proyecto;
 	}
 
 	/**

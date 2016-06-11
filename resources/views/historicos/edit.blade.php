@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-edit"></i> Historico #{{$historico->ID_HISTORICO}}</h1>
+        <h1><i class="glyphicon glyphicon-edit"></i> Histórico {{$historico->NOMBRE_HISTORICO}}</h1>
     </div>
 @endsection
 

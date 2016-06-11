@@ -3,8 +3,7 @@
 @section('header')
     <div class="page-header clearfix">
         <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Versions
-            <a class="btn btn-success pull-right" href="{{ route('versions.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+            <i class="glyphicon glyphicon-align-justify"></i> Versiones
         </h1>
 
     </div>
@@ -20,7 +19,6 @@
                             <th>ID</th>
                             <th>NUMERO</th>
                         <th>ESFUERZOHORAS</th>
-                        <th>ESFUERZOTALLA</th>
                         <th>DURACION</th>
                         <th>FECHAFINAL</th>
                             <th class="text-right">OPTIONS</th>
@@ -30,19 +28,17 @@
                     <tbody>
                         @foreach($versions as $version)
                             <tr>
-                                <td>{{$version->id}}</td>
-                                <td>{{$version->numero}}</td>
-                    <td>{{$version->esfuerzohoras}}</td>
-                    <td>{{$version->esfuerzotalla}}</td>
-                    <td>{{$version->duracion}}</td>
-                    <td>{{$version->fechafinal}}</td>
+                                <td>{{$version->ID_VERSION}}</td>
+                                <td>{{$version->NUMERO_VERSION}}</td>
+                    <td>{{$version->ESFUERZO_HORAS}}</td>
+                    <td>{{$version->DURACION}}</td>
+                    <td>{{$version->FECHA_FINAL}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('versions.show', $version->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
-                                    <a class="btn btn-xs btn-warning" href="{{ route('versions.edit', $version->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                                    <a class="btn btn-xs btn-primary" href="{{ route('versions.show', $version->ID_VERSION) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar</a>
+                                    <a class="btn btn-xs btn-warning" href="{{ route('versions.edit', $version->ID_VERSION) }}"><i class="glyphicon glyphicon-edit"></i> Crear una nueva version</a>
                                     <form action="{{ route('versions.destroy', $version->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                                     </form>
                                 </td>
                             </tr>

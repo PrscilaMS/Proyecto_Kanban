@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> Usuarios / Create </h1>
+        <h1><i class="glyphicon glyphicon-plus"></i> Crear Usuario </h1>
     </div>
 @endsection
 
@@ -31,14 +31,14 @@
                     </div>
                     <div class="form-group @if($errors->has('correo')) has-error @endif">
                        <label for="correo-field">Correo</label>
-                    <input type="text" id="correo-field" name="correo" class="form-control" value="{{ old("correo") }}"/>
+                    <input type="email" id="correo-field" name="correo" class="form-control" value="{{ old("correo") }}"/>
                        @if($errors->has("correo"))
                         <span class="help-block">{{ $errors->first("correo") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('contrasena')) has-error @endif">
                        <label for="contrasena-field">Contrasena</label>
-                    <input type="text" id="contrasena-field" name="contrasena" class="form-control" value="{{ old("contrasena") }}"/>
+                    <input type="password" id="contrasena-field" name="contrasena" class="form-control" value="{{ old("contrasena") }}"/>
                        @if($errors->has("contrasena"))
                         <span class="help-block">{{ $errors->first("contrasena") }}</span>
                        @endif

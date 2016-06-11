@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> TareaHistoricos / Create </h1>
+        <h1><i class="glyphicon glyphicon-plus"></i> Crear Tarea Histórico</h1>
     </div>
 @endsection
 
@@ -64,22 +64,23 @@
                         <span class="help-block">{{ $errors->first("duracionmantenimiento") }}</span>
                        @endif
                     </div>
-                <div class="well well-sm">
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                    <a class="btn btn-link pull-right" href="{{ route('tarea_historicos.index') }}"><i class="glyphicon glyphicon-backward"></i>  Atrás</a>
-                </div>
-                
-                <div class="form-group">
+                    
+                    <div class="form-group">
+                         <label for="dselectTallas">Talla</label>
                     <select>
                       @foreach($tallas as $talla)
                       
-                       <option value="Vineet">Vineet Saini</option>
+                       <option class="form-control" value="{{$talla->ID_TALLA}}">{{$talla->NOMBRE_TALLA}}</option>
                       @endforeach
                     </select>
                 </div>
-                
+                <div class="well well-sm">
+                    <button type="submit" name="boton" value="tarea" class="btn btn-primary">Agregar Tarea</button>
+                     <button type="submit" name="boton"  value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button>
+                    
+                </div>
             </form>
-
+           
         </div>
     </div>
 @endsection

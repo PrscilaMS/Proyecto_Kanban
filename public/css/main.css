@@ -1,9 +1,52 @@
 .navbar li {
-    width: 10vh;
+    width: 16vh;
     margin-left: 3vh;
 }
+
+.navbar {
+  background-color: #f98c1f;
+}
+
+.a{
+  text-decoration: blink;
+}
+
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    color: white;
-    background-color: #F0605B;
+    color: #FAAC58;
+    background-color: #FAAC58;
     text-align: center;
+    font-weight: 100;
+    
+}
+
+.row1{
+  background-color:  #b3d1ff;
+  text-align: center;
+}
+
+.btn{
+    margin-top: 1vh;
+}
+
+.rowPrincipal{
+  text-align: center;
+}
+
+.footer{
+    display: table-row;
+    height: 1px;
+    background-color:#f98c1f;
+    text-align: center;
+}
+
+.container {
+    height: auto;
+}
+html,body {
+    height:100%;
+    width: 100%;
+}
+
+body {
+    display: table;
 }

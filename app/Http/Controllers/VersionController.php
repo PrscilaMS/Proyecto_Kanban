@@ -15,7 +15,7 @@ class VersionController extends Controller {
 	 */
 	public function index()
 	{
-		$versions = Version::orderBy('id', 'desc')->paginate(10);
+		$versions = Version::orderBy('ID_VERSION', 'desc')->paginate(10);
 
 		return view('versions.index', compact('versions'));
 		// casa
@@ -41,11 +41,10 @@ class VersionController extends Controller {
 	{
 		$version = new Version();
 
-		$version->numero = $request->input("numero");
-        $version->esfuerzoHoras = $request->input("esfuerzoHoras");
-        $version->esfuerzoTalla = $request->input("esfuerzoTalla");
-        $version->duracion = $request->input("duracion");
-        $version->fechaFinal = $request->input("fechaFinal");
+		$version->NUMERO_VERSION = $request->input("numero");
+        $version->ESFUERZO_HORAS = $request->input("esfuerzoHoras");
+        $version->DURACION = $request->input("duracion");
+        $version->FECHA_FINAL = $request->input("fechaFinal");
 
 		$version->save();
 

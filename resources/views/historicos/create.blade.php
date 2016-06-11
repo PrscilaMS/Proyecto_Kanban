@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> Historicos / Create </h1>
+        <h1><i class="glyphicon glyphicon-plus"></i>Crear Histórico </h1>
     </div>
 @endsection
 
@@ -36,16 +36,10 @@
                         <span class="help-block">{{ $errors->first("fechafinal") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('duraciontotal')) has-error @endif">
-                       <label for="duraciontotal-field">Duracion Total:</label>
-                    <input type="text" id="duraciontotal-field" name="duraciontotal" class="form-control" value="{{ old("duraciontotal") }}"/>
-                       @if($errors->has("duraciontotal"))
-                        <span class="help-block">{{ $errors->first("duraciontotal") }}</span>
-                       @endif
-                    </div>
+                    
                 <div class="well well-sm">
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                    <a class="btn btn-link pull-right" href="{{ route('historicos.index') }}"><i class="glyphicon glyphicon-backward"></i> Back</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Continuar</button>
+                    <a class="btn btn-link pull-right" href="{{ route('historicos.index') }}"><i class="glyphicon glyphicon-backward"></i> Volver</a>
                 </div>
             </form>
 
