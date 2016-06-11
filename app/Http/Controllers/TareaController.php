@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Tarea;
+use App\Talla;
 use Illuminate\Http\Request;
 
 class TareaController extends Controller {
@@ -27,7 +28,8 @@ class TareaController extends Controller {
 	 */
 	public function create()
 	{
-		return view('tareas.create');
+		$tallas = Talla::all();
+		return view('tareas.create',compact('tallas'));
 	}
 
 	/**
@@ -40,11 +42,13 @@ class TareaController extends Controller {
 	{
 		$tarea = new Tarea();
 
-		$tarea->enunciado = $request->input("enunciado");
-
+		$tarea->ENUNCIADO = $request->input("enunciado");
+		$tarea->ID_TALLA = $request->input("talla");
+		$tarea->ID_VERSION = session('id_proyecto');
 		$tarea->save();
+		
 
-		return redirect()->route('tareas.index')->with('message', 'Item created successfully.');
+		return redirect()->route('tareas.create')->with('message', 'Item created successfully.');
 	}
 
 	/**

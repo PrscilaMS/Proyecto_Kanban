@@ -17,6 +17,19 @@ class Historico extends Model
       }
       
       
+      public static function eliminar($id) {
+            \DB::table('historicos')->where('ID_HISTORICO', '=', $id)->delete();
+      }
+      
+       
+      public static function  modificarHoras($historico) {
+            \DB::table('historicos')
+            ->where('ID_HISTORICO', $historico->ID_HISTORICO)
+            ->update(['DURACION_TOTAL' => $historico->DURACION_TOTAL]);
+      }
+      
+     
+      
    
       
 }

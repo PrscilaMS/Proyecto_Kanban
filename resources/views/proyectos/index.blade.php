@@ -4,7 +4,7 @@
     <div class="page-header clearfix">
         <h1>
             <i class="glyphicon glyphicon-align-justify"></i> Proyectos
-            <a class="btn btn-success pull-right" href="{{ route('proyectos.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+            <a class="btn pull-right" href="{{ route('proyectos.create') }}"><h4><i class="glyphicon glyphicon-plus"></i> Crear Proyecto</h4></a>
         </h1>
 
     </div>
@@ -17,26 +17,24 @@
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                        <th>FECHAINICIO</th>
-                            <th class="text-right">OPTIONS</th>
+                            <th class="rowPrincipal">NOMBRE</th>
+                        <th class="rowPrincipal">FECHA INICIO</th>
+                            <th class="rowPrincipal">OPTIONES</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach($proyectos as $proyecto)
-                            <tr>
-                                <td>{{$proyecto->id}}</td>
-                                <td>{{$proyecto->nombre}}</td>
-                    <td>{{$proyecto->fechainicio}}</td>
+                            <tr class="row1">
+                                <td>{{$proyecto->NOMBRE_PROYECT}}</td>
+                    <td>{{$proyecto->FECHA_INICIO}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('proyectos.show', $proyecto->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
-                                    <a class="btn btn-xs btn-warning" href="{{ route('proyectos.edit', $proyecto->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                                    <a class="btn btn-xs btn-primary" href="{{ route('proyectos.show', $proyecto->ID_PROYECTO) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar </a>
+                                    <a class="btn btn-xs btn-primary" href="{{ route('proyectos.edit', $proyecto->ID_PROYECTO) }}"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
                                     <form action="{{ route('proyectos.destroy', $proyecto->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                        <button type="submit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

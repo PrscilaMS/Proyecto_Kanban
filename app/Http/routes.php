@@ -32,3 +32,5 @@ Route::resource("equipos","EquipoController");
 Route::resource("versions","VersionController");
 
 Route::resource("historico_resumens","HistoricoResumanController");
+
+Route::get('historicos/CreateHistorico', 'HistoricoController@updateCreateHistorico');

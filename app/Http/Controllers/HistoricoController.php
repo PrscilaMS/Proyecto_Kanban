@@ -4,6 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Historico;
+use App\Talla;
+
 use Illuminate\Http\Request;
 
 class HistoricoController extends Controller {
@@ -43,11 +45,29 @@ class HistoricoController extends Controller {
 		$historico->NOMBRE_HISTORICO = $request->input("nombre");
         $historico->FECHA_INICIO = $request->input("fechainicio");
         $historico->FECHA_FINAL = $request->input("fechafinal");
-        $historico->DURACION_TOTAL = $request->input("duraciontotal");
-
+		
 		$historico->save();
-		\Flash::message('Historico insertado con éxito');
-		return view('historicos');
+     	$historico = HistoricoController::showByName($historico);
+		
+		session(['id_historico' => $historico->ID_HISTORICO]);
+		session(['TotalHoras' => 0]);
+		
+		$tallas = Talla::all();
+		 
+		return view('tarea_historicos.create', compact('tallas'));
+	}
+	
+   	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function showByName($historico)
+	{
+		$historico = Historico::where('NOMBRE_HISTORICO', $historico->NOMBRE_HISTORICO)->first();
+
+		return $historico;
 	}
 
 	/**
@@ -85,15 +105,38 @@ class HistoricoController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
-		$historico = Historico::where('ID_HISTORICO', $id)->first();
 		
-		$historico->NOMBRE_HISTORICO = $request->input("nombre");
-        $historico->FECHA_INICIO = $request->input("fechainicio");
-        $historico->FECHA_FINAL = $request->input("fechafinal");
-        $historico->DURACION_TOTAL = $request->input("duraciontotal");
+		$historico = new Historico;
+		
+		$historico->ID_HISTORICO = session('id_historico'); 
+        $historico->DURACION_TOTAL = session('TotalHoras');
+        session(['TotalHoras' => 0]); 
 
-		Historico::modificar($historico);
-		\Flash::message('Historico modificado con éxito');
+		Historico::modificarHoras($historico);
+		\Flash::message('Historico creado con éxito');
+		return redirect('historicos');
+		// $historico = Historico::where('ID_HISTORICO', $id)->first();
+		
+		// $historico->NOMBRE_HISTORICO = $request->input("nombre");
+  //      $historico->FECHA_INICIO = $request->input("fechainicio");
+  //      $historico->FECHA_FINAL = $request->input("fechafinal");
+  //      $historico->DURACION_TOTAL = $request->input("duraciontotal");
+
+		// Historico::modificar($historico);
+		// \Flash::message('Historico modificado con éxito');
+		// return redirect('historicos');
+	}
+	
+	public function updateCreateHistorico()
+	{
+		$historico = new Historico;
+		
+		$historico->ID_HISTORICO = session('id_historico'); 
+        $historico->DURACION_TOTAL = session('TotalHoras');
+        session(['TotalHoras' => 0]); 
+
+		Historico::modificarHoras($historico);
+		\Flash::message('Historico creado con éxito');
 		return redirect('historicos');
 	}
 

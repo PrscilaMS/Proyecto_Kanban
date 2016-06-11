@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> Tallas / Create </h1>
+        <h1><i class="glyphicon glyphicon-plus"></i> Crear Talla </h1>
     </div>
 @endsection
 
