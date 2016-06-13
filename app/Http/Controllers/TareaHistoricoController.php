@@ -30,7 +30,6 @@ class TareaHistoricoController extends Controller {
 	 */
 	public function create()
 	{
-		
 		$tallas = Talla::all();
 		return view('tarea_historicos.create', compact('tallas'));
 	}
