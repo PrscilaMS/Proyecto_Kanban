@@ -1,26 +1,40 @@
+/*Header*/
 .navbar li {
     width: 16vh;
     margin-left: 3vh;
 }
 
 .navbar {
-  background-color: #f98c1f;
+  background-color: #2f4050;
+  color: #ffffff;
 }
 
-.a{
-  text-decoration: blink;
-}
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    color: #FAAC58;
-    background-color: #FAAC58;
+    background-color: #233645;
     text-align: center;
     font-weight: 100;
     
 }
+.navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: #1ab394;
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-brand:hover{
+    color: #1ab394;
+}
+
+
 
 .row1{
-  background-color:  #b3d1ff;
+  background-color: #bcbdbd;
   text-align: center;
 }
 
@@ -32,10 +46,9 @@
   text-align: center;
 }
 
-.footer{
+.footer {
     display: table-row;
     height: 1px;
-    background-color:#f98c1f;
     text-align: center;
 }
 
@@ -47,6 +60,48 @@ html,body {
     width: 100%;
 }
 
+.text-muted{
+    color: #FFFFFF;
+}
 body {
     display: table;
+}
+
+
+
+/* Botones*/
+.btn:hover {
+    color: #ffffff;
+    background-color:#127d67;
+    border-color: #127d67;
+}
+
+.btn {
+    color: #fff;
+    background-color: #1ab394;
+    border-color: #1ab394;
+}
+
+/*Campos y titulos*/
+
+.fecha{
+    width: 25vh;
+}
+
+/*Paginacion*/
+
+.pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #1ab394;
+    border-color: #1ab394;
+}
+
+.pagination>.active>span {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #1ab394;
+    border-color: #1ab394;
 }

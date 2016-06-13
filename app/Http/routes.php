@@ -33,4 +33,7 @@ Route::resource("versions","VersionController");
 
 Route::resource("historico_resumens","HistoricoResumanController");
 
-Route::get('historicos/CreateHistorico', 'HistoricoController@updateCreateHistorico');
+Route::patch('historicos/CreateHistorico',[
+    'as' => 'historicos/CreateHistorico',
+    'uses' => 'HistoricoController@updateCreateHistorico'
+]);

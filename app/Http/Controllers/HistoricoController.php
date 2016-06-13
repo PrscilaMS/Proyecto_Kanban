@@ -115,19 +115,9 @@ class HistoricoController extends Controller {
 		Historico::modificarHoras($historico);
 		\Flash::message('Historico creado con éxito');
 		return redirect('historicos');
-		// $historico = Historico::where('ID_HISTORICO', $id)->first();
-		
-		// $historico->NOMBRE_HISTORICO = $request->input("nombre");
-  //      $historico->FECHA_INICIO = $request->input("fechainicio");
-  //      $historico->FECHA_FINAL = $request->input("fechafinal");
-  //      $historico->DURACION_TOTAL = $request->input("duraciontotal");
-
-		// Historico::modificar($historico);
-		// \Flash::message('Historico modificado con éxito');
-		// return redirect('historicos');
 	}
 	
-	public function updateCreateHistorico()
+	public static function updateCreateHistorico()
 	{
 		$historico = new Historico;
 		
