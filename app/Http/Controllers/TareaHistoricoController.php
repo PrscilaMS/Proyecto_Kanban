@@ -49,7 +49,6 @@ class TareaHistoricoController extends Controller {
 
 		$tarea_historico->NOMBRE_TAREA_HISTRICO = $request->input("nombre");
         $tarea_historico->ID_HISTORICO = session('id_historico');
-        
         $tarea_historico->ID_TALLA = $request->input("selectTallas");
         $tarea_historico->DURACION_REQUERIMIENTOS = $request->input("duracionrequerimientos");
         $tarea_historico->DURACION_DISENO = $request->input("duraciondiseno");
@@ -75,6 +74,7 @@ class TareaHistoricoController extends Controller {
 		}
 		if (!empty($_POST['boton2'])) {
 			HistoricoController::updateCreateHistorico();
+			
 	     	return redirect('historicos');
 		}
         
