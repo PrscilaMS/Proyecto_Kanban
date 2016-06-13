@@ -24,17 +24,18 @@
                     </div>
                     <div class="form-group @if($errors->has('fechainicio')) has-error @endif">
                        <label for="fechainicio-field">Fecha Inicio:</label>
-                    <input type="date" id="fechainicio-field" name="fechainicio" class="form-control" value="{{ old("fechainicio") }}"/>
+                    <input type="date" id="fechainicio-field" name="fechainicio" class="fecha form-control" value="{{ old("fechainicio") }}"/>
                        @if($errors->has("fechainicio"))
                         <span class="help-block">{{ $errors->first("fechainicio") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('fechafinal')) has-error @endif">
                        <label for="fechafinal-field">Fecha Final:</label>
-                    <input type="date" id="fechafinal-field" name="fechafinal" class="form-control" value="{{ old("fechafinal") }}"/>
+                    <input type="date" id="fechafinal-field" name="fechafinal" class=" fecha form-control" value="{{ old("fechafinal") }}"/>
                        @if($errors->has("fechafinal"))
                         <span class="help-block">{{ $errors->first("fechafinal") }}</span>
                        @endif
+                       @if($errors->has("fechafinal") < $errors->has("fechainicio"))
                     </div>
                     
                 <div class="well well-sm">

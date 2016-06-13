@@ -19,7 +19,6 @@
                     <thead>
                         <tr>
                             <th class="rowPrincipal">NOMBRE</th>
-                            <th class="rowPrincipal">OPCIONES</th>
                         </tr>
                     </thead>
 

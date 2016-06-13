@@ -10,24 +10,25 @@
     @include('error')
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
 
             <form action="{{ route('proyectos.store') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group @if($errors->has('nombre')) has-error @endif">
                        <label for="nombre-field">Nombre</label>
-                    <input type="text" id="nombre-field" name="nombre" class="form-control" value="{{ old("nombre") }}"/>
+                    <input type="text" id="nombre-field" name="nombre" class="form-control" value="{{ old("nombre") }}" maxlength="40" size="40" required/>
                        @if($errors->has("nombre"))
                         <span class="help-block">{{ $errors->first("nombre") }}</span>
                        @endif
                 </div>
-                <div class="form-group @if($errors->has('fechainicio')) has-error @endif">
+                <div class=" fecha form-group @if($errors->has('fechainicio')) has-error @endif">
                        <label for="fechainicio-field">Fecha Inicio</label>
                     <input type="date" id="fechainicio-field" name="fechainicio" class="form-control" value="{{ old("fechainicio") }}"/>
                        @if($errors->has("fechainicio"))
                         <span class="help-block">{{ $errors->first("fechainicio") }}</span>
                        @endif
+               
                 </div>
                 <div class="form-group">
                     <label for="selectTallas">Equipo</label>

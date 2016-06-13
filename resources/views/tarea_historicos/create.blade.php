@@ -12,7 +12,8 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form action="{{ route('tarea_historicos.store') }}" method="POST">
+            <form name="boton1" action="{{ route('tarea_historicos.store') }}" method="POST">
+                <form name="boton2" action="{{ route('tarea_historicos.store') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group @if($errors->has('nombre')) has-error @endif">
@@ -66,7 +67,7 @@
                     </div>
                     
                     <div class="form-group">
-                         <label for="dselectTallas">Talla</label>
+                         <label for="selectTallas">Talla</label>
                     <select>
                       @foreach($tallas as $talla)
                       
@@ -75,8 +76,12 @@
                     </select>
                 </div>
                 <div class="well well-sm">
-                    <button type="submit" name="boton" value="tarea" class="btn btn-primary">Agregar Tarea</button>
-                     <button type="submit" name="boton"  value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button>
+                    
+               
+                    
+                     	<button type="submit" name="boton2"   value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button> 
+                    </form>
+                    <button type="submit" name="boton"  value="tarea" class="btn btn-primary">Agregar Tarea</button>
                     
                 </div>
             </form>

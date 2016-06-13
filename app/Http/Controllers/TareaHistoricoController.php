@@ -2,9 +2,11 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HistoricoController;
 
 use App\TareaHistorico;
 use App\Talla;
+
 use Illuminate\Http\Request;
 
 class TareaHistoricoController extends Controller {
@@ -42,9 +44,14 @@ class TareaHistoricoController extends Controller {
 	public function store(Request $request)
 	{
 		
+	    
+
 		$tarea_historico = new TareaHistorico();
 
 		$tarea_historico->NOMBRE_TAREA_HISTRICO = $request->input("nombre");
+        $tarea_historico->ID_HISTORICO = session('id_historico');
+        
+        $tarea_historico->ID_TALLA = $request->input("selectTallas");
         $tarea_historico->DURACION_REQUERIMIENTOS = $request->input("duracionrequerimientos");
         $tarea_historico->DURACION_DISENO = $request->input("duraciondiseno");
         $tarea_historico->DURACION_DESARROLLO = $request->input("duraciondesarrollo");
@@ -63,10 +70,15 @@ class TareaHistoricoController extends Controller {
 		\Flash::message('Tarea agregada con éxito');
 		
 		$tallas = Talla::all();
+		
+		if (!empty($_POST['boton1'])) {
 		return view('tarea_historicos.create', compact('tallas'));
-        /*$tarea_historicos =	TareaHistoricoController::indexShow();
-		return view('tarea_historicos.indexCreateHistorico', compact('tarea_historicos'));
-		*/
+		}
+		if (!empty($_POST['boton2'])) {
+			HistoricoController::updateCreateHistorico();
+	     	return redirect('historicos');
+		}
+        
 
 	}
 	
