@@ -29,13 +29,7 @@
                                 <td>{{$proyecto->NOMBRE_PROYECT}}</td>
                     <td>{{$proyecto->FECHA_INICIO}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('proyectos.show', $proyecto->ID_PROYECTO) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar </a>
-                                    <a class="btn btn-xs btn-primary" href="{{ route('proyectos.edit', $proyecto->ID_PROYECTO) }}"><i class="glyphicon glyphicon-edit"></i> Modificar</a>
-                                    <form action="{{ route('proyectos.destroy', $proyecto->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
-                                    </form>
+                                    <a class="btn btn-xs btn-primary" href="{{ route('proyectos.show', $proyecto->ID_PROYECTO) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar Versiones del Proyecto</a>
                                 </td>
                             </tr>
                         @endforeach

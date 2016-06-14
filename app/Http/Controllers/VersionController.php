@@ -37,18 +37,13 @@ class VersionController extends Controller {
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public  static function store($id)
 	{
 		$version = new Version();
 
-		$version->NUMERO_VERSION = $request->input("numero");
-        $version->ESFUERZO_HORAS = $request->input("esfuerzoHoras");
-        $version->DURACION = $request->input("duracion");
-        $version->FECHA_FINAL = $request->input("fechaFinal");
-
-		$version->save();
-
-		return redirect()->route('versions.index')->with('message', 'Item created successfully.');
+		$version->ID_PROYECTO = $id;
+		$hola = Version::crearVersion($id);
+		echo $hola;
 	}
 
 	/**
