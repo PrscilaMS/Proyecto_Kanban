@@ -17,9 +17,14 @@ class HistoricoController extends Controller {
 	 */
 	public function index()
 	{
+		
 		$historicos = Historico::orderBy('ID_HISTORICO', 'desc')->paginate(10);
-
-		return view('historicos.index', compact('historicos'));
+		$datos = \DB::table('historicos')->join('equipos', function ($join){
+			$join->on('historicos.ID_EQUIPO', '=', 'equipos.ID_EQUIPO');
+		})->get();
+		
+		
+	  return view('historicos.index', compact('historicos', 'datos'));
 	}
 
 	/**
@@ -29,7 +34,8 @@ class HistoricoController extends Controller {
 	 */
 	public function create()
 	{
-		return view('historicos.create');
+		$equipos = \DB::table('equipos')->get();
+		return view('historicos.create', compact('equipos'));
 	}
 
 	/**
@@ -45,7 +51,8 @@ class HistoricoController extends Controller {
 		$historico->NOMBRE_HISTORICO = $request->input("nombre");
         $historico->FECHA_INICIO = $request->input("fechainicio");
         $historico->FECHA_FINAL = $request->input("fechafinal");
-		
+        $historico->ID_EQUIPO = $request->input("combobox");
+        
 		$historico->save();
      	$historico = HistoricoController::showByName($historico);
 		

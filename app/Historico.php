@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Historico extends Model
 {
       public $timestamps = false;
-      protected $fillable = array('NOMBRE_HISTORICO', 'FECHA_INICIO', 'FECHA_FINAL', 'DURACION_TOTAL');
+      protected $fillable = array('NOMBRE_HISTORICO', 'ID_EQUIPO','FECHA_INICIO', 'FECHA_FINAL', 'DURACION_TOTAL');
       
       
       public static function modificar($historico) {
@@ -22,7 +22,7 @@ class Historico extends Model
       }
       
        
-      public static function  modificarHoras($historico) {
+      public static function modificarHoras($historico) {
             \DB::table('historicos')
             ->where('ID_HISTORICO', $historico->ID_HISTORICO)
             ->update(['DURACION_TOTAL' => $historico->DURACION_TOTAL]);

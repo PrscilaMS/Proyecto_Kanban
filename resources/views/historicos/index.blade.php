@@ -23,7 +23,8 @@
             <thead >
                 <tr >
                     <th class="rowPrincipal" >NOMBRE</th>
-                    <th class="rowPrincipal" >FECHA INICIO</th>
+                    <th class="rowPrincipal" >EQUIPO</th>
+                     <th class="rowPrincipal" >FECHA INICIO</th>
                     <th class="rowPrincipal" >FECHA FINAL</th>
                     <th class="rowPrincipal" >DURACION TOTAL</th>
                     <th class="rowPrincipal" >OPCIONES</th>
@@ -31,9 +32,10 @@
             </thead>
 
             <tbody>
-                @foreach($historicos as $historico)
+                @foreach($datos as $historico)
                 <tr class="row1">
                     <td >{{$historico->NOMBRE_HISTORICO}}</td>
+                    <td >{{$historico->NOMBRE_EQUIPO}}</td>
                     <td>{{$historico->FECHA_INICIO}}</td>
                     <td>{{$historico->FECHA_FINAL}}</td>
                     <td>{{$historico->DURACION_TOTAL}}</td>
