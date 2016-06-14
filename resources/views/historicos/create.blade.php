@@ -35,7 +35,6 @@
                        @if($errors->has("fechafinal"))
                         <span class="help-block">{{ $errors->first("fechafinal") }}</span>
                        @endif
-                       @if($errors->has("fechafinal") < $errors->has("fechainicio"))
                     </div>
                     <label>Equipo: </label>
                     <select name="combobox">
