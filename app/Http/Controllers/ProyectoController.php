@@ -53,8 +53,10 @@ class ProyectoController extends Controller {
 		$proyecto->save();
 		
 		
-		$historico = ProyectoController::showByName($proyecto);
+		$proyecto = ProyectoController::showByName($proyecto);
 		session(['id_proyecto' => $proyecto->ID_PROYECTO]);
+		
+		VersionController::store($proyecto->ID_PROYECTO);
 		
 		$tallas = Talla::all();
 		return redirect()->route('tareas.create')->with('message', 'Item created successfully.');
