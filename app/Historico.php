@@ -15,8 +15,6 @@ class Historico extends Model
             ->where('ID_HISTORICO', $historico->ID_HISTORICO)
             ->update(['NOMBRE_HISTORICO' => $historico->NOMBRE_HISTORICO, 'FECHA_INICIO' => $historico->FECHA_INICIO, 'FECHA_FINAL' => $historico->FECHA_FINAL, 'DURACION_TOTAL' => $historico->DURACION_TOTAL]);
       }
-      
-      
       public static function eliminar($id) {
             \DB::table('historicos')->where('ID_HISTORICO', '=', $id)->delete();
       }
