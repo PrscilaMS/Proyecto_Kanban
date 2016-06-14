@@ -17,7 +17,7 @@ class HistoricoController extends Controller {
 	 */
 	public function index()
 	{
-		
+		///Actualizado
 		$historicos = Historico::orderBy('ID_HISTORICO', 'desc')->paginate(10);
 		$datos = \DB::table('historicos')->join('equipos', function ($join){
 			$join->on('historicos.ID_EQUIPO', '=', 'equipos.ID_EQUIPO');
