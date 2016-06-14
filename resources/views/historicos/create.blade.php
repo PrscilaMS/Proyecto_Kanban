@@ -35,8 +35,13 @@
                        @if($errors->has("fechafinal"))
                         <span class="help-block">{{ $errors->first("fechafinal") }}</span>
                        @endif
-                       @if($errors->has("fechafinal") < $errors->has("fechainicio"))
                     </div>
+                    <label>Equipo: </label>
+                    <select name="combobox">
+                        @foreach($equipos as $equipo)
+                      <option value="{{$equipo->ID_EQUIPO}}">{{$equipo->NOMBRE_EQUIPO}}</option>
+                      @endforeach
+                    </select>
                     
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-sm btn-primary">Continuar</button>
