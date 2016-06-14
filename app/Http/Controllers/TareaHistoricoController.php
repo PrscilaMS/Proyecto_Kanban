@@ -43,8 +43,6 @@ class TareaHistoricoController extends Controller {
 	public function store(Request $request)
 	{
 		
-	    
-
 		$tarea_historico = new TareaHistorico();
 
 		$tarea_historico->NOMBRE_TAREA_HISTRICO = $request->input("nombre");
