@@ -1,6 +1,6 @@
 @extends('layout') @section('header')
 <div class="page-header">
-    <h1><i class="glyphicon glyphicon-plus"></i> Tareas / Create </h1>
+    <h1><i class="glyphicon glyphicon-plus"></i> Crear una Tarea para el Proyecto </h1>
 </div>
 @endsection @section('content') @include('error')
 
@@ -25,8 +25,9 @@
                 </select>
             </div>
             <div class="well well-sm">
+                <a class="btn " href="{{ route('proyectos.index') }}"><i class=" glyphicon "></i> Terminar y Guargar Proyecto </a>
                 <button type="submit" class="btn btn-primary">Crear Tarea</button>
-                <a class="btn btn-link pull-right" href="{{ route('proyectos.index') }}"><i class=" glyphicon glyphicon-backward"></i> Finalizar</a>
+                
             </div>
         </form>
 
