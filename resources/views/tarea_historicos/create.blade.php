@@ -10,74 +10,68 @@
     @include('error')
 
     <div class="row">
-        <div class="col-md-12">
-
-            <form name="boton1" action="{{ route('tarea_historicos.store') }}" method="POST">
-                <form name="boton2" action="{{ route('tarea_historicos.store') }}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                <div class="form-group @if($errors->has('nombre')) has-error @endif">
-                       <label for="nombre-field">Nombre</label>
-                    <input type="text" id="tg t65" name="nombre" class="form-control" value="{{ old("nombre") }}" required/>
-                       @if($errors->has("nombre"))
+        <div class="contenido-formulario col-md-12">
+                <form name="boton1" action="{{ route('tarea_historicos.store') }}" method="POST">
+                    <form name="boton2" action="{{ route('tarea_historicos.store') }}" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    
+                    <div class="form-group  @if($errors->has('nombre')) has-error @endif">
+                        <label class="nombre" for="nombre-field">Nombre</label>
+                        <input type="text" id="nombre-field" name="nombre" class="nombre form-control" value="{{ old("nombre") }}" maxlength="40" required/>
+                           @if($errors->has("nombre"))
                         <span class="help-block">{{ $errors->first("nombre") }}</span>
-                       @endif
+                           @endif
                     </div>
-                    <div class="form-group @if($errors->has('duracionrequerimientos')) has-error @endif">
-                       <label for="duracionrequerimientos-field">Duración Requerimientos</label>
-                    <input type="text" id="duracionrequerimientos-field" name="duracionrequerimientos" class="form-control" value="{{ old("duracionrequerimientos") }}" required/>
-                       @if($errors->has("duracionrequerimientos"))
-                        <span class="help-block">{{ $errors->first("duracionrequerimientos") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('duraciondiseno')) has-error @endif">
-                       <label for="duraciondiseno-field">Duración Diseño</label>
-                    <input type="text" id="duraciondiseno-field" name="duraciondiseno" class="form-control" value="{{ old("duraciondiseno") }}" required/>
-                       @if($errors->has("duraciondiseno"))
-                        <span class="help-block">{{ $errors->first("duraciondiseno") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('duraciondesarrollo')) has-error @endif">
-                       <label for="duraciondesarrollo-field">Duración Desarrollo</label>
-                    <input type="text" id="duraciondesarrollo-field" name="duraciondesarrollo" class="form-control" value="{{ old("duraciondesarrollo") }}" required/>
-                       @if($errors->has("duraciondesarrollo"))
-                        <span class="help-block">{{ $errors->first("duraciondesarrollo") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('duracionpruebas')) has-error @endif">
-                       <label for="duracionpruebas-field">Duración Pruebas</label>
-                    <input type="text" id="duracionpruebas-field" name="duracionpruebas" class="form-control" value="{{ old("duracionpruebas") }}" required/>
-                       @if($errors->has("duracionpruebas"))
-                        <span class="help-block">{{ $errors->first("duracionpruebas") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('duracionimplementacion')) has-error @endif">
-                       <label for="duracionimplementacion-field">Duración Implementacion</label>
-                    <input type="text" id="duracionimplementacion-field" name="duracionimplementacion" class="form-control" value="{{ old("duracionimplementacion") }}" required/>
-                       @if($errors->has("duracionimplementacion"))
-                        <span class="help-block">{{ $errors->first("duracionimplementacion") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('duracionmantenimiento')) has-error @endif">
-                        <label for="duracionmantenimiento-field">Duración Mantenimiento</label>
-                        <input type="text" id="duracionmantenimiento-field" name="duracionmantenimiento" class="form-control" value="{{ old("duracionmantenimiento") }}" required/>
-                        @if($errors->has("duracionmantenimiento"))
-                            <span class="help-block">{{ $errors->first("duracionmantenimiento") }}</span>
-                        @endif
+                     <div class="form-group">
+                        <label class="selectContainer" for="selectContainer">Talla </label>
+                        <div class="selectContainer">
+                            <select name="selectTallas" class="form-control">
+                               @foreach($tallas as $talla)
+                                   <option class="form-control"  value="{{$talla->ID_TALLA}}">{{$talla->NOMBRE_TALLA}}</option>
+                              @endforeach
+                            </select>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="selectContainer">Talla: </label>
-                            <div class="selectContainer">
-                                <select name="selectTallas" class="form-control">
-                                   @foreach($tallas as $talla)
-                                   <option class="form-control"  value="{{$talla->ID_TALLA}}">{{$talla->NOMBRE_TALLA}}</option>
-                                  @endforeach
-                                </select>
-                            </div>
+                    <div class="input-group">
+                    <legend class="titulos-secundarios">Duración de por etapas</legend>
+                    <div class="duraciones1">
+                        <div class="requerimientos form-group @if($errors->has('duracionrequerimientos')) has-error @endif">
+                            <label for="duracionrequerimientos-field">Requerimientos: </label>
+                            <input type="text" id="duracionrequerimientos-field" name="duracionrequerimientos" class="duracion form-control" value="{{ old("duracionrequerimientos") }}" maxlength="11" required/>
+                               @if($errors->has("duracionrequerimientos"))
+                            <span class="help-block">{{ $errors->first("duracionrequerimientos") }}</span>
+                               @endif
+                        </div>
+                        <div class="diseño form-group @if($errors->has('duraciondiseno')) has-error @endif">
+                            <label for="duraciondiseno-field">Diseño: </label>
+                            <input type="text" id="duraciondiseno-field" name="duraciondiseno" class="duracion form-control" value="{{ old("duraciondiseno") }}"  maxlength="11"  required/>
+                               @if($errors->has("duraciondiseno"))
+                            <span class="help-block">{{ $errors->first("duraciondiseno") }}</span>
+                               @endif
+                        </div>
+                         
                     </div>
-                
-                <div class="well well-sm">
+                    <div class="duraciones2">
+                       <div class="desarrollo form-group @if($errors->has('duraciondesarrollo')) has-error @endif">
+                            <label for="duraciondesarrollo-field">Desarrollo: </label>
+                            <input type="text" id="duraciondesarrollo-field" name="duraciondesarrollo" class="duracion form-control" value="{{ old("duraciondesarrollo") }}"  maxlength="11"  required/>
+                               @if($errors->has("duraciondesarrollo"))
+                            <span class="help-block">{{ $errors->first("duraciondesarrollo") }}</span>
+                               @endif
+                        </div>
+                        <div class="pruebas form-group @if($errors->has('duracionpruebas')) has-error @endif">
+                            <label for="duracionpruebas-field">Pruebas: </label>
+                            <input type="text" id="duracionpruebas-field" name="duracionpruebas" class="duracion form-control" value="{{ old("duracionpruebas") }}"  maxlength="11"  required/>
+                               @if($errors->has("duracionpruebas"))
+                            <span class="help-block">{{ $errors->first("duracionpruebas") }}</span>
+                               @endif
+                        </div>
+                    </div>
+                    </div>
+    
+                   
+                <div class="botones well well-sm">
                     <button type="submit" name="boton-terminar"   value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button> 
                     </form>
                     <button type="submit" name="boton-agregartarea"  value="tarea" class="btn btn-primary">Agregar Tarea</button>
@@ -86,7 +80,7 @@
         </div>
     </div>
     
-     <h2>Tareas ingresadas</h2>
+     <h2 class="page-header">Tareas ingresadas</h2>
         
     <div class="row">
         <div class="col-md-12">
