@@ -18,49 +18,49 @@
 
                 <div class="form-group @if($errors->has('nombre')) has-error @endif">
                        <label for="nombre-field">Nombre</label>
-                    <input type="text" id="tg t65" name="nombre" class="form-control" value="{{ old("nombre") }}"/>
+                    <input type="text" id="tg t65" name="nombre" class="form-control" value="{{ old("nombre") }}" required/>
                        @if($errors->has("nombre"))
                         <span class="help-block">{{ $errors->first("nombre") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('duracionrequerimientos')) has-error @endif">
                        <label for="duracionrequerimientos-field">Duración Requerimientos</label>
-                    <input type="text" id="duracionrequerimientos-field" name="duracionrequerimientos" class="form-control" value="{{ old("duracionrequerimientos") }}"/>
+                    <input type="text" id="duracionrequerimientos-field" name="duracionrequerimientos" class="form-control" value="{{ old("duracionrequerimientos") }}" required/>
                        @if($errors->has("duracionrequerimientos"))
                         <span class="help-block">{{ $errors->first("duracionrequerimientos") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('duraciondiseno')) has-error @endif">
                        <label for="duraciondiseno-field">Duración Diseño</label>
-                    <input type="text" id="duraciondiseno-field" name="duraciondiseno" class="form-control" value="{{ old("duraciondiseno") }}"/>
+                    <input type="text" id="duraciondiseno-field" name="duraciondiseno" class="form-control" value="{{ old("duraciondiseno") }}" required/>
                        @if($errors->has("duraciondiseno"))
                         <span class="help-block">{{ $errors->first("duraciondiseno") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('duraciondesarrollo')) has-error @endif">
                        <label for="duraciondesarrollo-field">Duración Desarrollo</label>
-                    <input type="text" id="duraciondesarrollo-field" name="duraciondesarrollo" class="form-control" value="{{ old("duraciondesarrollo") }}"/>
+                    <input type="text" id="duraciondesarrollo-field" name="duraciondesarrollo" class="form-control" value="{{ old("duraciondesarrollo") }}" required/>
                        @if($errors->has("duraciondesarrollo"))
                         <span class="help-block">{{ $errors->first("duraciondesarrollo") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('duracionpruebas')) has-error @endif">
                        <label for="duracionpruebas-field">Duración Pruebas</label>
-                    <input type="text" id="duracionpruebas-field" name="duracionpruebas" class="form-control" value="{{ old("duracionpruebas") }}"/>
+                    <input type="text" id="duracionpruebas-field" name="duracionpruebas" class="form-control" value="{{ old("duracionpruebas") }}" required/>
                        @if($errors->has("duracionpruebas"))
                         <span class="help-block">{{ $errors->first("duracionpruebas") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('duracionimplementacion')) has-error @endif">
                        <label for="duracionimplementacion-field">Duración Implementacion</label>
-                    <input type="text" id="duracionimplementacion-field" name="duracionimplementacion" class="form-control" value="{{ old("duracionimplementacion") }}"/>
+                    <input type="text" id="duracionimplementacion-field" name="duracionimplementacion" class="form-control" value="{{ old("duracionimplementacion") }}" required/>
                        @if($errors->has("duracionimplementacion"))
                         <span class="help-block">{{ $errors->first("duracionimplementacion") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('duracionmantenimiento')) has-error @endif">
                        <label for="duracionmantenimiento-field">Duración Mantenimiento</label>
-                    <input type="text" id="duracionmantenimiento-field" name="duracionmantenimiento" class="form-control" value="{{ old("duracionmantenimiento") }}"/>
+                    <input type="text" id="duracionmantenimiento-field" name="duracionmantenimiento" class="form-control" value="{{ old("duracionmantenimiento") }}" required/>
                        @if($errors->has("duracionmantenimiento"))
                         <span class="help-block">{{ $errors->first("duracionmantenimiento") }}</span>
                        @endif
@@ -68,7 +68,7 @@
                     
                     <div class="form-group">
                          <label for="selectTallas">Talla</label>
-                    <select name="selectTallas" >
+                    <select name="selectTallas" required>
                       @foreach($tallas as $talla)
                       
                        <option class="form-control"  value="{{$talla->ID_TALLA}}">{{$talla->NOMBRE_TALLA}}</option>
@@ -79,9 +79,9 @@
                     
                
                     
-                     	<button type="submit" name="boton2"   value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button> 
+                     	<button type="submit" name="boton-terminar"   value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button> 
                     </form>
-                    <button type="submit" name="boton"  value="tarea" class="btn btn-primary">Agregar Tarea</button>
+                    <button type="submit" name="boton-agregartarea"  value="tarea" class="btn btn-primary">Agregar Tarea</button>
                     
                 </div>
             </form>

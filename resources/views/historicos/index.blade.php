@@ -1,6 +1,6 @@
 @extends('layout') @section('header')
 <div class="page-header clearfix">
-     @include('flash::message')
+     
     <h1>
             <i class="glyphicon glyphicon-list-alt"></i> Historicos
             <a class="btn pull-right" href="{{ route('historicos.create') }}"><h4><i class="glyphicon glyphicon-plus"></i> Crear Histórico</h4></a>
@@ -10,6 +10,7 @@
 </div>
 @endsection @section('content')
 <div class="row">
+    @include('flash::message')
     <div class="col-md-12">
         
         <form role="search" class="navbar-form navbar-right">

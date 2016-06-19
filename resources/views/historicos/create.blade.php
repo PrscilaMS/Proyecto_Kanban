@@ -10,6 +10,7 @@
     @include('error')
 
     <div class="row">
+        @include('flash::message')
         <div class="col-md-12">
 
             <form action="{{ route('historicos.store') }}" method="POST">
@@ -24,7 +25,7 @@
                     </div>
                     <div class="form-group @if($errors->has('fechainicio')) has-error @endif">
                        <label for="fechainicio-field">Fecha Inicio:</label>
-                    <input type="date" id="fechainicio-field" name="fechainicio" class="fecha form-control" value="{{ old("fechainicio") }}"/>
+                    <input type="date" id="fechainicio-field" name="fechainicio" class="fecha form-control" value="{{ old("fechainicio") }}" />
                        @if($errors->has("fechainicio"))
                         <span class="help-block">{{ $errors->first("fechainicio") }}</span>
                        @endif
@@ -44,12 +45,13 @@
                     </select>
                     
                 <div class="well well-sm">
-                    <button type="submit" class="btn btn-sm btn-primary">Continuar</button>
+                    <button type="submit" class="btn btn-sm btn-primary" onclick="validarFechaMenorActual(fechainicio)">Continuar</button>
                     <a class="btn btn-link pull-right" href="{{ route('historicos.index') }}"><i class="glyphicon glyphicon-backward"></i> Volver</a>
                 </div>
             </form>
 
         </div>
     </div>
+    
 
 @endsection
