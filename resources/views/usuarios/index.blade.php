@@ -7,7 +7,7 @@
     <div class="page-header clearfix">
         <h1>
             <i class="glyphicon glyphicon-user"></i> Usuarios
-            <a class="btn pull-right" href="{{ route('usuarios.create') }}"><h4><i class="glyphicon glyphicon-plus"></i> Crear Histórico</h4></a>
+            <a class="btn pull-right" href="{{ route('usuarios.create') }}"><h4><i class="glyphicon glyphicon-plus"></i> Crear</h4></a>
         </h1>
 
     </div>
@@ -23,9 +23,6 @@
                             <th>NOMBRE</th>
                         <th>APELLIDOS</th>
                         <th>CORREO</th>
-                        <th>CONTRASEÑA</th>
-                        <th>TIPO</th>
-                            <th class="text-right">Opciones</th>
                         </tr>
                     </thead>
 
@@ -35,8 +32,6 @@
                                 <td>{{$usuario->NOMBRE_USUARIO}}</td>
                     <td>{{$usuario->APELLIDO}}</td>
                     <td>{{$usuario->CORREO}}</td>
-                    <td>{{$usuario->CONTRASENNA}}</td>
-                    <td>{{$usuario->TIPO}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('usuarios.show', $usuario->CORREO) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
                                     <form action="{{ route('usuarios.destroy', $usuario->CORREO) }}" method="POST" style="display: inline;" onsubmit="if(confirm('¿Esta seguro que desea eliminar este elemnto?')) { return true } else {return false };">

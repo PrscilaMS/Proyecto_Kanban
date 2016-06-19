@@ -60,6 +60,7 @@ class TareaHistoricoController extends Controller {
 		$horas = session('TotalHoras');
 		
 		$horas = TareaHistoricoController::calculateHours($tarea_historico, $horas);
+	
 		
 		session(['TotalHoras' => $horas]);
 	
@@ -67,10 +68,10 @@ class TareaHistoricoController extends Controller {
 		
 		$tallas = Talla::all();
 		
-		if (!empty($_POST['boton1'])) {
+		if (!empty($_POST['boton-agregartarea'])) {
 		return view('tarea_historicos.create', compact('tallas'));
 		}
-		if (!empty($_POST['boton2'])) {
+		if (!empty($_POST['boton-terminar'])) {
 			HistoricoController::updateCreateHistorico();
 			
 	     	return redirect('historicos');

@@ -46,6 +46,16 @@ class HistoricoController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+		
+        $historico = new Historico();
+        
+		$historico->NOMBRE_HISTORICO = $request->input("nombre");
+     	
+     	$historico = HistoricoController::showByName($historico);
+		
+		
+     	if($historico == null){
+     			
 		$historico = new Historico();
 
 		$historico->NOMBRE_HISTORICO = $request->input("nombre");
@@ -62,6 +72,17 @@ class HistoricoController extends Controller {
 		$tallas = Talla::all();
 		 
 		return view('tarea_historicos.create', compact('tallas'));
+		
+     		
+     	}else{
+     		\Flash::message('El nombre del histórico ya existe, por favor ingrese otro distinto');
+     		$equipos = \DB::table('equipos')->get();
+     		return view('historicos.create', compact('equipos'));
+     		
+     	}
+		
+		
+	
 	}
 	
    	/**
@@ -130,10 +151,14 @@ class HistoricoController extends Controller {
 		
 		$historico->ID_HISTORICO = session('id_historico'); 
         $historico->DURACION_TOTAL = session('TotalHoras');
-        session(['TotalHoras' => 0]); 
+        
+        
+        
 
 		Historico::modificarHoras($historico);
-		\Flash::message('Historico creado con éxito');
+		
+        session(['TotalHoras' => 0]); 
+		\Flash::message('Histórico creado con éxito');
 		return redirect('historicos');
 	}
 
