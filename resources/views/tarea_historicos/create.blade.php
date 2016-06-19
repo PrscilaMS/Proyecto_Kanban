@@ -59,33 +59,76 @@
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('duracionmantenimiento')) has-error @endif">
-                       <label for="duracionmantenimiento-field">Duración Mantenimiento</label>
-                    <input type="text" id="duracionmantenimiento-field" name="duracionmantenimiento" class="form-control" value="{{ old("duracionmantenimiento") }}" required/>
-                       @if($errors->has("duracionmantenimiento"))
-                        <span class="help-block">{{ $errors->first("duracionmantenimiento") }}</span>
-                       @endif
+                        <label for="duracionmantenimiento-field">Duración Mantenimiento</label>
+                        <input type="text" id="duracionmantenimiento-field" name="duracionmantenimiento" class="form-control" value="{{ old("duracionmantenimiento") }}" required/>
+                        @if($errors->has("duracionmantenimiento"))
+                            <span class="help-block">{{ $errors->first("duracionmantenimiento") }}</span>
+                        @endif
                     </div>
                     
                     <div class="form-group">
-                         <label for="selectTallas">Talla</label>
-                    <select name="selectTallas" required>
-                      @foreach($tallas as $talla)
-                      
-                       <option class="form-control"  value="{{$talla->ID_TALLA}}">{{$talla->NOMBRE_TALLA}}</option>
-                      @endforeach
-                    </select>
-                </div>
+                        <label for="selectContainer">Talla: </label>
+                            <div class="selectContainer">
+                                <select name="selectTallas" class="form-control">
+                                   @foreach($tallas as $talla)
+                                   <option class="form-control"  value="{{$talla->ID_TALLA}}">{{$talla->NOMBRE_TALLA}}</option>
+                                  @endforeach
+                                </select>
+                            </div>
+                    </div>
+                
                 <div class="well well-sm">
-                    
-               
-                    
-                     	<button type="submit" name="boton-terminar"   value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button> 
+                    <button type="submit" name="boton-terminar"   value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button> 
                     </form>
                     <button type="submit" name="boton-agregartarea"  value="tarea" class="btn btn-primary">Agregar Tarea</button>
-                    
                 </div>
             </form>
-           
         </div>
     </div>
+    
+     <h2>Tareas ingresadas</h2>
+        
+    <div class="row">
+        <div class="col-md-12">
+            @if($tareas_historicos != null)
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>NOMBRE</th>
+                        <th>REQUERIMIENTOS</th>
+                        <th>DISEÑO</th>
+                        <th>DESARROLLO</th>
+                        <th>PRUEBAS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($tareas_historicos as $tarea_historico)
+                            <tr>
+                                <td>{{$tarea_historico->NOMBRE_TAREA_HISTRICO}}</td>
+                                <td>{{$tarea_historico->DURACION_REQUERIMIENTOS}}</td>
+                                <td>{{$tarea_historico->DURACION_DISENO}}</td>
+                                <td>{{$tarea_historico->DURACION_DESARROLLO}}</td>
+                                <td>{{$tarea_historico->DURACION_PRUEBAS}}</td>
+                    
+        
+                                <td class="text-right">
+                                    <form action="{{ route('tarea_historicos.destroy', $tarea_historico->ID_TAREA_HISTORICO) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <h3 class="text-center alert alert-info">No hay tareas!</h3>
+            @endif
+
+        </div>
+    </div>
+    
+    
 @endsection

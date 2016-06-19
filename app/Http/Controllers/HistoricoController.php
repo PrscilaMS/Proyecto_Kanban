@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Historico;
 use App\Talla;
+use App\TareaHistorico;
 
 use Illuminate\Http\Request;
 
@@ -56,22 +57,23 @@ class HistoricoController extends Controller {
 		
      	if($historico == null){
      			
-		$historico = new Historico();
-
-		$historico->NOMBRE_HISTORICO = $request->input("nombre");
-        $historico->FECHA_INICIO = $request->input("fechainicio");
-        $historico->FECHA_FINAL = $request->input("fechafinal");
-        $historico->ID_EQUIPO = $request->input("combobox");
-        
-		$historico->save();
-     	$historico = HistoricoController::showByName($historico);
-		
-		session(['id_historico' => $historico->ID_HISTORICO]);
-		session(['TotalHoras' => 0]);
-		
-		$tallas = Talla::all();
-		 
-		return view('tarea_historicos.create', compact('tallas'));
+			$historico = new Historico();
+	
+			$historico->NOMBRE_HISTORICO = $request->input("nombre");
+	        $historico->FECHA_INICIO = $request->input("fechainicio");
+	        $historico->FECHA_FINAL = $request->input("fechafinal");
+	        $historico->ID_EQUIPO = $request->input("combobox");
+	        
+			$historico->save();
+	     	$historico = HistoricoController::showByName($historico);
+			
+			session(['id_historico' => $historico->ID_HISTORICO]);
+			session(['TotalHoras' => 0]);
+			
+			$tallas = Talla::all();
+			$tareas_historicos = TareaHistorico::mostrarTareas($historico->ID_HISTORICO);
+			 
+			return view('tarea_historicos.create', compact('tallas'), compact('tareas_historicos'));
 		
      		
      	}else{
