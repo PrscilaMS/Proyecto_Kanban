@@ -69,11 +69,12 @@ class TareaHistoricoController extends Controller {
 		$tallas = Talla::all();
 		
 		if (!empty($_POST['boton-agregartarea'])) {
-		return view('tarea_historicos.create', compact('tallas'));
+			
+			$tareas_historicos = TareaHistorico::mostrarTareas(session('id_historico'));
+			return view('tarea_historicos.create', compact('tallas'), compact('tareas_historicos'));
 		}
 		if (!empty($_POST['boton-terminar'])) {
 			HistoricoController::updateCreateHistorico();
-			
 	     	return redirect('historicos');
 		}
         
