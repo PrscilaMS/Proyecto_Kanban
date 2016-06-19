@@ -44,11 +44,18 @@ class TareaController extends Controller {
 
 		$tarea->ENUNCIADO = $request->input("enunciado");
 		$tarea->ID_TALLA = $request->input("talla");
-		$tarea->ID_VERSION = session('id_proyecto');
+		$tarea->ID_VERSION = session('id_version');
 		$tarea->save();
 		
+		$tallas = Talla::all();
+		$tareas = Tarea::traerTareas(session('id_version'));
+		
 
-		return redirect()->route('tareas.create')->with('message', 'Item created successfully.');
+		
+		return view('tareas.create', compact('tareas'), compact('tallas'));
+		
+		
+		
 	}
 
 	/**
@@ -103,10 +110,13 @@ class TareaController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$tarea = Tarea::findOrFail($id);
-		$tarea->delete();
+        Tarea::elimiar($id);
 
-		return redirect()->route('tareas.index')->with('message', 'Item deleted successfully.');
+		
+		$tallas = Talla::all();
+		$tareas = Tarea::traerTareas(session('id_version'));
+		
+		return view('tareas.create', compact('tareas'), compact('tallas'));
 	}
 
 }

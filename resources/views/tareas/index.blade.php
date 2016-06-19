@@ -29,7 +29,7 @@
                             <tr>
                                 <td>{{$tarea->ID_TAREA}}</td>
                                 <td>{{$tarea->ENUNCIADO}}</td>
-                                <!--<td>{{$talla->NOMBRE_TALLA}}</td>                                -->
+                                <td>{{$tarea->ID_TALLA}}</td>                                
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('tareas.show', $tarea->ID_TAREA) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar</a>
                                     <a class="btn btn-xs btn-warning" href="{{ route('tareas.edit', $tarea->ID_TAREA) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>

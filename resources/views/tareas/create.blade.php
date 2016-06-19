@@ -29,8 +29,44 @@
                 <button type="submit" class="btn btn-primary">Crear Tarea</button>
                 
             </div>
-        </form>
+        </form></br>
+        
+        <h2>Tareas ingresadas</h2>
+        
+        
+        
+        @if($tareas != null)
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID TAREA</th>
+                            <th>ENUNCIADO</th>
+                            <th>Talla</th>
+                            <th class="text-right">OPTIONS</th>
+                        </tr>
+                    </thead>
 
+                    <tbody>
+                        @foreach($tareas as $tarea)
+                            <tr>
+                                <td>{{$tarea->ID_TAREA}}</td>
+                                <td>{{$tarea->ENUNCIADO}}</td>
+                                <td>{{$tarea->ID_TALLA}}</td>                                
+                                <td class="text-right">
+                                    <form action="{{ route('tareas.destroy', $tarea->ID_TAREA) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
+            @else
+                <h3 class="text-center alert alert-info">No hay registros!</h3>
+            @endif
 
     </div>
 </div>
