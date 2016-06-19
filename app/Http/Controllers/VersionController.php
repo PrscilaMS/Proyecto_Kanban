@@ -42,8 +42,9 @@ class VersionController extends Controller {
 		$version = new Version();
 
 		$version->ID_PROYECTO = $id;
-		$hola = Version::crearVersion($id);
-		echo $hola;
+		return Version::crearVersion($id);
+		
+
 	}
 
 	/**

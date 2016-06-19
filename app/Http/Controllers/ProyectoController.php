@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Proyecto;
 use App\Talla;
+use App\Tarea;
 use App\Equipo;
 use App\Version;
 use Illuminate\Http\Request;
@@ -56,10 +57,13 @@ class ProyectoController extends Controller {
 		$proyecto = ProyectoController::showByName($proyecto);
 		session(['id_proyecto' => $proyecto->ID_PROYECTO]);
 		
-		VersionController::store($proyecto->ID_PROYECTO);
+		$id_version = VersionController::store($proyecto->ID_PROYECTO);
+		session(['id_version' => $id_version]);
 		
 		$tallas = Talla::all();
-		return redirect()->route('tareas.create')->with('message', 'Item created successfully.');
+		$tareas = Tarea::traerTareas($id_version);
+		
+		return view('tareas.create', compact('tareas'), compact('tallas'));
 	}
 	
 		/**
