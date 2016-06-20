@@ -41,6 +41,7 @@ class EquipoController extends Controller {
 		$equipo = new Equipo();
 
 		$equipo->NOMBRE_EQUIPO = $request->input("nombre");
+		$equipo->NUMERO_MIEMBROS= $request->input("cantidad");
 
 		$equipo->save();
 

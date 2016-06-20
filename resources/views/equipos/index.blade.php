@@ -15,17 +15,19 @@
         <div class="col-md-12">
             @include('flash::message')
             @if($equipos->count())
-                <table class="tablaTalla table table-condensed table-striped">
+                <table class="table table-condensed table-striped">
                     <thead >
-                        <tr class="col-md-8">
-                            <th class="rowPrincipal col-md-3">Nombre</th>
+                        <tr>
+                            <th class="rowPrincipal">Nombre</th>
+                            <th class="rowPrincipal">Cantidad Miembros</th>
                         </tr>
                     </thead>
 
-                    <tbody class="col-md-8">
+                    <tbody >
                         @foreach($equipos as $equipo)
                             <tr class="row1">
-                                <td class="col-md-8">{{$equipo->NOMBRE_EQUIPO}}</td>
+                                <td>{{$equipo->NOMBRE_EQUIPO}}</td>
+                                <td>{{$equipo->NUMERO_MIEMBROS}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('equipos.show', $equipo->ID_EQUIPO) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
                                     <form action="{{ route('equipos.destroy', $equipo->ID_EQUIPO) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Seguro que desea elimnar el equipo?')) { return true } else {return false };">

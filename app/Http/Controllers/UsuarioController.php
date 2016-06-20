@@ -19,6 +19,19 @@ class UsuarioController extends Controller {
 
 		return view('usuarios.index', compact('usuarios'));
 	}
+	
+	
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function indexPrivilegios()
+	{
+		$usuarios= Usuario::orderBy('id', 'desc')->paginate(10);
+
+		return view('usuarios.privilegios', compact('usuarios'));
+	}
 
 	/**
 	 * Show the form for creating a new resource.

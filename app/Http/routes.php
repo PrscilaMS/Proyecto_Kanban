@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::resource("usuarios","UsuarioController");
 
+Route::get("privilegios", array("as"=>"dashboard","uses"=>"UsuarioController@indexPrivilegios"));
+
 Route::resource("proyectos","ProyectoController");
 
 Route::resource("tareas","TareaController");

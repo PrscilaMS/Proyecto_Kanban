@@ -120,3 +120,7 @@ body {
 .mostarInformacion{
     margin-left: 40vh;
 }
+
+.formulario{
+    align: center;
+}
