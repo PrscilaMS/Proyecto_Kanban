@@ -52,8 +52,6 @@ class TareaHistoricoController extends Controller {
         $tarea_historico->DURACION_DISENO = $request->input("duraciondiseno");
         $tarea_historico->DURACION_DESARROLLO = $request->input("duraciondesarrollo");
         $tarea_historico->DURACION_PRUEBAS = $request->input("duracionpruebas");
-        $tarea_historico->DURACION_IMPLEMENTACION = $request->input("duracionimplementacion");
-        $tarea_historico->DURACION_MANTENIMIENTO = $request->input("duracionmantenimiento");
 
 		$tarea_historico->save();
 		

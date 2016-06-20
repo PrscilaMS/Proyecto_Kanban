@@ -37,7 +37,7 @@
                     <td >{{$historico->NOMBRE_EQUIPO}}</td>
                     <td>{{$historico->FECHA_INICIO}}</td>
                     <td>{{$historico->FECHA_FINAL}}</td>
-                    <td>{{$historico->DURACION_TOTAL}}</td>
+                    <td>{{$historico->ESFUERZO}}</td>
                     <td class="text-left">
                         <a class="btn btn-xs btn-primary" href="{{ route('historicos.show', $historico->ID_HISTORICO) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
                         <form action="{{ route('historicos.destroy', $historico->ID_HISTORICO) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Seguro que quiere eliminar el histórico?')) { return true } else {return false };">

@@ -8,7 +8,7 @@ class TareaHistorico extends Model
 {
     public $timestamps = false;
     protected $fillable = array('ID_TALLA', 'ID_HISTORICO', 'NOMBRE_TAREA_HISTRICO','DURACION_REQUERIMIENTOS',
-    'DURACION_DISENO','DURACION_DESARROLLO','DURACION_PRUEBAS','DURACION_IMPLEMENTACION', 'DURACION_MANTENIMIENTO');//
+    'DURACION_DISENO','DURACION_DESARROLLO','DURACION_PRUEBAS');//
     
      
     public static function modificar($tarea_historico) {
