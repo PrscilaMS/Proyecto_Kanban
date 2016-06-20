@@ -33,8 +33,7 @@
                         </div>
                     </div>
                     
-                    <div class="input-group">
-                    <legend class="titulos-secundarios">Duración de por etapas</legend>
+                    <legend class="titulos-secundarios">Duración por etapas</legend>
                     <div class="duraciones1">
                         <div class="requerimientos form-group @if($errors->has('duracionrequerimientos')) has-error @endif">
                             <label for="duracionrequerimientos-field">Requerimientos: </label>
@@ -68,11 +67,10 @@
                                @endif
                         </div>
                     </div>
-                    </div>
     
                    
                 <div class="botones well well-sm">
-                    <button type="submit" name="boton-terminar"   value="historico" class="btn btn-primary" >Terminar, Guardar Histórico</button> 
+                    <button type="submit" name="boton-terminar"   value="historico" class="btn btn-primary" >Terminar</button> 
                     </form>
                     <button type="submit" name="boton-agregartarea"  value="tarea" class="btn btn-primary">Agregar Tarea</button>
                 </div>

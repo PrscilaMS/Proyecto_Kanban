@@ -4,7 +4,7 @@
     <div class="page-header clearfix">
         <h1>
            <span class="glyphicons glyphicons-user"></span> Equipos
-            <a class="btn pull-right" href="{{ route('equipos.create') }}"><h4><i class="glyphicon glyphicon-plus"></i> Crear Equipo</h4></a>
+            <a class="btn pull-right" href="{{ route('equipos.create') }}"><h5><i class="glyphicon glyphicon-plus"></i> Crear Equipo</h5></a>
         </h1>
 
     </div>
@@ -15,17 +15,17 @@
         <div class="col-md-12">
             @include('flash::message')
             @if($equipos->count())
-                <table class="table table-condensed table-striped">
-                    <thead>
-                        <tr>
-                            <th class="rowPrincipal">NOMBRE</th>
+                <table class="tablaTalla table table-condensed table-striped">
+                    <thead >
+                        <tr class="col-md-8">
+                            <th class="rowPrincipal col-md-3">Nombre</th>
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody class="col-md-8">
                         @foreach($equipos as $equipo)
                             <tr class="row1">
-                                <td>{{$equipo->NOMBRE_EQUIPO}}</td>
+                                <td class="col-md-8">{{$equipo->NOMBRE_EQUIPO}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('equipos.show', $equipo->ID_EQUIPO) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
                                     <form action="{{ route('equipos.destroy', $equipo->ID_EQUIPO) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Seguro que desea elimnar el equipo?')) { return true } else {return false };">

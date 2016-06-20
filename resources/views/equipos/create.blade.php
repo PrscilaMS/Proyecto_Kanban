@@ -16,15 +16,15 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group @if($errors->has('nombre')) has-error @endif">
-                       <label for="nombre-field">Nombre</label>
-                    <input type="text" id="nombre-field" name="nombre" class="form-control" value="{{ old("nombre") }}"/>
+                       <label class="nombre" for="nombre-field">Nombre</label>
+                    <input type="text" id="nombre-field" name="nombre" class="nombre form-control" value="{{ old("nombre") }}"/>
                        @if($errors->has("nombre"))
                         <span class="help-block">{{ $errors->first("nombre") }}</span>
                        @endif
                     </div>
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Crear</button>
-                    <a class="btn btn-link pull-right" href="{{ route('equipos.index') }}"><i class="glyphicon glyphicon-backward"></i> Atrás</a>
+                    <a class="btn btn-link pull-right" href="{{ route('equipos.index') }}"><i class="glyphicon glyphicon-backward"></i> Volver</a>
                 </div>
             </form>
 

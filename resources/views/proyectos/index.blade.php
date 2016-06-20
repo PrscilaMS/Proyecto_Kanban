@@ -4,7 +4,7 @@
     <div class="page-header clearfix">
         <h1>
             <i class="glyphicon glyphicon-align-justify"></i> Proyectos
-            <a class="btn pull-right" href="{{ route('proyectos.create') }}"><h4><i class="glyphicon glyphicon-plus"></i> Crear Proyecto</h4></a>
+            <a class="crear btn pull-right" href="{{ route('proyectos.create') }}"><h5><i class="glyphicon glyphicon-plus"></i> Crear Proyecto</h5></a>
         </h1>
 
     </div>
@@ -14,20 +14,19 @@
     <div class="row">
         <div class="col-md-12">
             @if($proyectos->count())
-                <table class="table table-condensed table-striped">
+                <table class="tabla table table-condensed table-striped center">
                     <thead>
-                        <tr>
-                            <th class="rowPrincipal">NOMBRE</th>
-                        <th class="rowPrincipal">FECHA INICIO</th>
-                            <th class="rowPrincipal">OPTIONES</th>
+                        <tr class="col-md-6">
+                            <th class="rowPrincipal col-md-8">Nombre</th>
+                            <th class="rowPrincipal col-md-8">Fecha Inicio</th>
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody class="col-md-6">
                         @foreach($proyectos as $proyecto)
                             <tr class="row1">
-                                <td>{{$proyecto->NOMBRE_PROYECT}}</td>
-                    <td>{{$proyecto->FECHA_INICIO}}</td>
+                                <td class="col-md-4">{{$proyecto->NOMBRE_PROYECT}}</td>
+                                <td class="col-md-4">{{$proyecto->FECHA_INICIO}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('proyectos.show', $proyecto->ID_PROYECTO) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar Versiones del Proyecto</a>
                                 </td>

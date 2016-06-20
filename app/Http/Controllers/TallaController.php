@@ -98,9 +98,15 @@ class TallaController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		Talla::eliminar($id);
-		\Flash::message('Talla eliminada con éxito');
-		return redirect('tallas');
+		try{
+			Talla::eliminar($id);
+			\Flash::message('Talla eliminada con éxito');
+			return redirect('tallas');
+		} catch (\Exception $e) {
+			\Flash::message('La talla esta ligada a tareas, no se puede eliminar');
+			return redirect('tallas');
+		}
+	
 	}
 
 }
