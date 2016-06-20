@@ -16,8 +16,8 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group @if($errors->has('sigla')) has-error @endif">
-                       <label for="sigla-field">Sigla</label>
-                    <input type="text" id="sigla-field" name="sigla" class="form-control" value="{{ old("sigla") }}"/>
+                       <label class="nombre" for="sigla-field">Sigla</label>
+                    <input type="text" id="sigla-field" name="sigla" class="nombre form-control" value="{{ old("sigla") }}"/>
                        @if($errors->has("sigla"))
                         <span class="help-block">{{ $errors->first("sigla") }}</span>
                        @endif

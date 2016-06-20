@@ -101,9 +101,16 @@ class EquipoController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		Equipo::eliminar($id);
+		try {
+			Equipo::eliminar($id);
 		\Flash::message('Equipo eliminado con éxito');
 		return redirect('equipos');
+		} catch (\Exception $e) {
+				
+			\Flash::message('El equipo esta ligado a un proyecto, no se puede eliminar');
+			return redirect('equipos');
+		}
+		
 	}
 
 }

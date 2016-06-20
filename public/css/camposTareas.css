@@ -2,6 +2,10 @@
 .nombre{
     width:60vh;
 }
+.enunciado{
+width: 80vh;    
+}
+
 .duracion{
     width:15vh;
     display:inline;
@@ -22,6 +26,6 @@
     width:60vh;
 }
 
-.nombre, .selectContainer, .titulos-secundarios, .requerimientos,.diseño, .desarrollo,.pruebas{
+.nombre, .selectContainer, .titulos-secundarios, .requerimientos,.diseño, .desarrollo,.pruebas, .fecha, .enunciado{
     margin-left: 50vh;
 }

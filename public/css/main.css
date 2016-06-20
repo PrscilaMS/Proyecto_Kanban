@@ -30,9 +30,6 @@
 .navbar-default .navbar-brand:hover{
     color: #1ab394;
 }
-
-
-
 .row1{
   background-color: #bcbdbd;
   text-align: center;
@@ -81,6 +78,10 @@ body {
     background-color: #1ab394;
     border-color: #1ab394;
 }
+.crear{
+        font-size: 10px;
+    font-weight: 200;
+}
 
 /*Campos y titulos*/
 
@@ -104,4 +105,18 @@ body {
     cursor: default;
     background-color: #1ab394;
     border-color: #1ab394;
+}
+
+/*TABLA*/
+.tabla{
+    margin-left: 50vh;
+}
+
+.tablaTalla{
+    margin-left: 50vh;
+}
+
+/*Mostar información*/
+.mostarInformacion{
+    margin-left: 40vh;
 }
