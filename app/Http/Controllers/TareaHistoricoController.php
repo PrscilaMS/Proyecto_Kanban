@@ -73,6 +73,38 @@ class TareaHistoricoController extends Controller {
 		}
 		if (!empty($_POST['boton-terminar'])) {
 			HistoricoController::updateCreateHistorico();
+			
+			$idHistorico = session('id_historico');
+			$tareas = TareaHistorico::mostrarTareas($idHistorico);
+			$tallas = TareaHistorico::traerTallas($idHistorico);
+			$duracionRequerimientos = 0;
+			$duracionDiseno = 0;
+			$duracionDesarrollo = 0;
+			$duracionPruebas = 0;
+			
+			
+			foreach ($tallas as $talla) {
+				foreach ($tareas as $tarea) {
+					if($talla->ID_TALLA == $tarea->ID_TALLA){
+						$duracionRequerimientos = $duracionRequerimientos + $tarea->DURACION_REQUERIMIENTOS;
+						$duracionDiseno = $duracionDiseno + $tarea->DURACION_DISENO;
+						$duracionDesarrollo = $duracionDesarrollo + $tarea->DURACION_DESARROLLO;
+						$duracionPruebas = $duracionPruebas + $tarea->DURACION_PRUEBAS;
+					}
+					
+				}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 	     	return redirect('historicos');
 		}
         

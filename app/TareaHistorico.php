@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TareaHistorico extends Model
 {
     public $timestamps = false;
+    
     protected $fillable = array('ID_TALLA', 'ID_HISTORICO', 'NOMBRE_TAREA_HISTRICO','DURACION_REQUERIMIENTOS',
     'DURACION_DISENO','DURACION_DESARROLLO','DURACION_PRUEBAS');//
     
@@ -22,5 +23,16 @@ class TareaHistorico extends Model
       }
     public static function mostrarTareas($historico) {
            return  \DB::table('tarea_historicos')->where('ID_HISTORICO', '=', $historico)->get();
+      }
+      
+      public static function traerTallas($id) {
+         return \DB::table('tarea_historicos')->select('ID_TALLA')->where('ID_HISTORICO', '=', $id)->distinct()->get();
+        
+      }
+      
+      
+      public static function ingresarHistoricoResumen($duracionRequerimientos,$duracionDiseno,$duracionDesarrollo,$duracionPruebas,$idHistorico,$idTalla,$total) {
+         return \DB::table('tarea_historicos')->select('ID_TALLA')->where('ID_HISTORICO', '=', $id)->distinct()->get();
+        
       }
 }
