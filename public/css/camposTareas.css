@@ -26,6 +26,12 @@ width: 80vh;
     width:60vh;
 }
 
-.nombre, .selectContainer, .titulos-secundarios, .requerimientos,.diseño, .desarrollo,.pruebas, .fecha, .enunciado{
+
+.contenidoFormulario{
     margin-left: 50vh;
+}
+
+.columnaPrincipal{
+  border-right: thick solid  #eee;
+  
 }
