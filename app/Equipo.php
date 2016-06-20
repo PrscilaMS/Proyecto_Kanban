@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Equipo extends Model
 {
     public $timestamps = false;
-    protected $fillable = array('NOMBRE_EQUIPO');//
+    protected $fillable = array('NOMBRE_EQUIPO', 'NUMERO_MIEMBROS');//
     
      
       public static function modificar($equipo) {

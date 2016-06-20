@@ -78,7 +78,7 @@
                         <li class="divider"></li>
                         <li><a href="{{ route('usuarios.index') }}">Ver</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Privilegios</a></li>
+                        <li><a href="{{ URL::to('/') }}/privilegios">Privilegios</a></li>
                 </li>
                 
             </ul>
