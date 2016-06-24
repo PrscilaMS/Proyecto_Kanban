@@ -16,11 +16,19 @@
     <div class="row">
         <div class="col-md-12">
             
-            <form role="search" class="navbar-form navbar-right">
-                <div class="form-group">
-                    <label for="nombre-field">Buscar: </label>
-                    <input type="text" placeholder="Digite el nombre o apellido" class="form-control">
+            <form action="{{ URL::to('/') }}/buscarPorNombreApellido" method="POST" role="search" class="navbar-form navbar-right">
+                
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" name="buscador" placeholder="Digite el nombre o apellido">
+                    <span class="input-group-addon">
+						<button type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>  
+					</span>
                 </div>
+                
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                
             </form>
             @if($usuarios->count())
                 <table class="table table-condensed table-striped">
@@ -39,12 +47,7 @@
                     <td>{{$usuario->APELLIDO}}</td>
                     <td>{{$usuario->CORREO}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('usuarios.show', $usuario->CORREO) }}"><i class="glyphicon glyphicon-eye-open"></i> Ver</a>
-                                    <form action="{{ route('usuarios.destroy', $usuario->CORREO) }}" method="POST" style="display: inline;" onsubmit="if(confirm('¿Esta seguro que desea eliminar este elemnto?')) { return true } else {return false };">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
-                                    </form>
+                                    <a class="btn btn-xs btn-primary" href="{{ URL::to('/') }}/usuarios_equipos"><i class="glyphicon glyphicon-pencil"></i> Modificar privilegios</a>
                                 </td>
                             </tr>
                         @endforeach

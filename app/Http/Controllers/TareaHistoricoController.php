@@ -72,7 +72,7 @@ class TareaHistoricoController extends Controller {
 			return view('tarea_historicos.create', compact('tallas'), compact('tareas_historicos'));
 		}
 		if (!empty($_POST['boton-terminar'])) {
-			HistoricoController::updateCreateHistorico();
+			//HistoricoController::updateCreateHistorico();
 			
 			$idHistorico = session('id_historico');
 			$tareas = TareaHistorico::mostrarTareas($idHistorico);
@@ -81,30 +81,29 @@ class TareaHistoricoController extends Controller {
 			$duracionDiseno = 0;
 			$duracionDesarrollo = 0;
 			$duracionPruebas = 0;
+			$total = 0;
+			$count = 0;
 			
 			
 			foreach ($tallas as $talla) {
 				foreach ($tareas as $tarea) {
 					if($talla->ID_TALLA == $tarea->ID_TALLA){
+						$count = $count + 1;
 						$duracionRequerimientos = $duracionRequerimientos + $tarea->DURACION_REQUERIMIENTOS;
 						$duracionDiseno = $duracionDiseno + $tarea->DURACION_DISENO;
 						$duracionDesarrollo = $duracionDesarrollo + $tarea->DURACION_DESARROLLO;
 						$duracionPruebas = $duracionPruebas + $tarea->DURACION_PRUEBAS;
 					}
-					
 				}
+				$total = $duracionRequerimientos + $duracionDiseno + $duracionDesarrollo + $duracionPruebas;
+				TareaHistorico::ingresarHistoricoResumen($duracionRequerimientos/$count, $duracionDiseno/$count, $duracionDesarrollo/$count, $duracionPruebas/$count, $idHistorico, $talla->ID_TALLA, $total/$count );
+			    $duracionRequerimientos = 0;
+		      	$duracionDiseno = 0;
+				$duracionDesarrollo = 0;
+				$duracionPruebas = 0;
+				$total = 0;
+				$count = 0;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 	     	return redirect('historicos');
 		}
         

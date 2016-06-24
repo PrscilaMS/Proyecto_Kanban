@@ -17,4 +17,19 @@ class Version extends Model
     
     return $id;
       }
+      
+      public static function traerVersiones($idProyecto) {
+        return  \DB::table('versions')->where(['ID_PROYECTO' => $idProyecto])->get();
+    
+      }
+      
+      public static function eliminarVersion($idVersion) {
+       \DB::table('versions')->where('ID_VERSION', '>=',  $idVersion)->delete();
+    
+      }      
+      
+      public static function ingresarVersionResumen($duracionRequerimientos, $duracionDiseno, $duracionDesarrollo, $duracionPruebas, $idVersion, $idTalla, $total) {
+          \DB::table('version_resumens')->insert(['ID_TALLA' => $idTalla,  'TOTAL' => $total, 'ID_VERSION' => $idVersion,  'DURACION_REQUERIMIENTOS' => $duracionRequerimientos,'DURACION_DISENO' => $duracionDiseno,'DURACION_DESARROLLO' => $duracionDesarrollo, 'DURACION_PRUEBAS' => $duracionPruebas]);
+      }
+      
 }

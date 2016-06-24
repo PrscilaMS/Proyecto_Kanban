@@ -18,4 +18,14 @@ class Usuario extends Model
       public static function eliminar($id) {
             \DB::table('usuarios')->where('CORREO', '=', $id)->delete();
       }
+      
+      public static function agregarPrivilegio($equipo, $usuario){
+          \DB::table('usuario_equipo')->insert(['CORREO' => $usuario->CORREO, 'ID_EQUIPO' => $equipo->ID_EQUIPO]);
+      }
+      
+      public static function eliminarPrivilegio($id) {
+            \DB::table('usuario_equipo')->where('ID_EQUIPO', '=', $id)->delete();
+      }
+      
 }
+

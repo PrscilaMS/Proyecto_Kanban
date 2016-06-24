@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Version;
+use App\Proyecto;
 use Illuminate\Http\Request;
 
 class VersionController extends Controller {
@@ -101,12 +102,30 @@ class VersionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Request $request, $id)
 	{
-		$version = Version::findOrFail($id);
-		$version->delete();
-
-		return redirect()->route('versions.index')->with('message', 'Item deleted successfully.');
+		$idProyecto = $request->input("idProyecto");
+		Version::eliminarVersion($id);
+		$versions = Version::traerVersiones($idProyecto);
+		
+		if($versions ==  null){
+			Proyecto::eliminarProyecto($idProyecto);
+		}
+		
+		return view('versions.index', compact('versions'), compact('idProyecto'));
 	}
+	
+	
+	public function mostrarVersiones($idProyecto)
+	{
+		$versions = Version::traerVersiones($idProyecto);
+
+		return view('versions.index', compact('versions'), compact('idProyecto'));
+		
+	}	
+	
+	
+	
+	
 
 }

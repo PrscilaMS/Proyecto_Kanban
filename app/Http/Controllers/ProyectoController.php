@@ -50,12 +50,14 @@ class ProyectoController extends Controller {
 		$proyecto->NOMBRE_PROYECT = $request->input("nombre");
         $proyecto->FECHA_INICIO = $request->input("fechainicio");
         $proyecto->ID_EQUIPO = $request->input("equipo");
+        $proyecto->FECHA_ESTIMACION = $request->input("fechainicioestimacion");
 
 		$proyecto->save();
 		
 		
 		$proyecto = ProyectoController::showByName($proyecto);
 		session(['id_proyecto' => $proyecto->ID_PROYECTO]);
+		
 		
 		$id_version = VersionController::store($proyecto->ID_PROYECTO);
 		session(['id_version' => $id_version]);
@@ -85,11 +87,23 @@ class ProyectoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public static function show($id)
 	{
 		$proyecto = Proyecto::findOrFail($id);
 
 		return view('proyectos.show', compact('proyecto'));
+	}
+		/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public static function buscarProyecto($id)
+	{
+		$proyecto = Proyecto::where('ID_PROYECTO', $id)->first();
+
+		return $proyecto;
 	}
 
 	/**
@@ -137,5 +151,44 @@ class ProyectoController extends Controller {
 
 		return redirect()->route('proyectos.index')->with('message', 'Item deleted successfully.');
 	}
+	
+	
+	public function estimacionProyecto()
+	{
+			$historicos = HistoricoController::traerHistoricosPorFecha();
+			$idProyecto = session('id_proyecto');
+			$idVersion = session('id_version');
+			$tareas = Proyecto::mostrarTareas($idVersion);
+			$tallas = Proyecto::traerTallas($idVersion);
+		
+			$duracionRequerimientos = 0;
+			$duracionDiseno = 0;
+			$duracionDesarrollo = 0;
+			$duracionPruebas = 0;
+			$total = 0;
+			$count = 0;
+			
+			foreach ($tallas as $talla) {
+				foreach ($historicos as $historico) {
+					if($talla->ID_TALLA == $historico->ID_TALLA){
+						$count = $count + 1;
+						$duracionRequerimientos = $duracionRequerimientos + $historico->DURACION_REQUERIMIENTOS;
+						$duracionDiseno = $duracionDiseno + $historico->DURACION_DISENO;
+						$duracionDesarrollo = $duracionDesarrollo + $historico->DURACION_DESARROLLO;
+						$duracionPruebas = $duracionPruebas + $historico->DURACION_PRUEBAS;
+					}
+				}
+				
+				$total = $duracionRequerimientos + $duracionDiseno + $duracionDesarrollo + $duracionPruebas;
+				Version::ingresarVersionResumen($duracionRequerimientos/$count, $duracionDiseno/$count, $duracionDesarrollo/$count, $duracionPruebas/$count, $idVersion, $talla->ID_TALLA, $total/$count );
+			    $duracionRequerimientos = 0;
+		      	$duracionDiseno = 0;
+				$duracionDesarrollo = 0;
+				$duracionPruebas = 0;
+				$total = 0;
+				$count = 0;
+				
+			}
 
+  }
 }
