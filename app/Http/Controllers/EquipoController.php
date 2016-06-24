@@ -55,7 +55,7 @@ class EquipoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public static function show($id)
 	{
 		$equipo = Equipo::where( 'ID_EQUIPO' , $id)->first();
 
@@ -112,6 +112,11 @@ class EquipoController extends Controller {
 			return redirect('equipos');
 		}
 		
+	}
+	public static function buscarEquipo($nombre){
+		$equipo = Equipo::where( 'NOMBRE_EQUIPO' , $nombre)->first();
+	
+		return $equipo;
 	}
 
 }

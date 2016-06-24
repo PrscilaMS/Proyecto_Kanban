@@ -118,5 +118,6 @@ class TareaController extends Controller {
 		
 		return view('tareas.create', compact('tareas'), compact('tallas'));
 	}
+	
 
 }

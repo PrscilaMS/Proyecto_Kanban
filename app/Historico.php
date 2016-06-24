@@ -26,6 +26,14 @@ class Historico extends Model
             ->update(['DURACION_TOTAL' => $historico->DURACION_TOTAL]);
       }
       
+      public static function historicoPorFechas($proyecto){
+            
+		$historicos =  \DB::table('historicos')->join('historico_resumens', 'historicos.ID_HISTORICO','=', 'historico_resumens.ID_HISTORICO')
+		                                    ->select('*')->where('FECHA_INICIO', '>=',$proyecto->FECHA_ESTIMACION)
+		                                    ->where('historicos.ID_EQUIPO', '=', $proyecto->ID_EQUIPO)->get();
+		return $historicos;
+      }
+      
      
       
    

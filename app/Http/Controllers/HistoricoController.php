@@ -176,5 +176,14 @@ class HistoricoController extends Controller {
 		\Flash::message('Historico eliminado con éxito');
 		return redirect('historicos');
 	}
+	
+	public static function traerHistoricosPorFecha()
+	{
+		$proyecto = ProyectoController::buscarProyecto(session('id_proyecto'));
+		$historicos=Historico::historicoPorFechas($proyecto);
+		return $historicos;
+	}
+	
+	
 
 }

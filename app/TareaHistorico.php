@@ -31,8 +31,8 @@ class TareaHistorico extends Model
       }
       
       
-      public static function ingresarHistoricoResumen($duracionRequerimientos,$duracionDiseno,$duracionDesarrollo,$duracionPruebas,$idHistorico,$idTalla,$total) {
-         return \DB::table('tarea_historicos')->select('ID_TALLA')->where('ID_HISTORICO', '=', $id)->distinct()->get();
+      public static function ingresarHistoricoResumen($duracionRequerimientos, $duracionDiseno, $duracionDesarrollo, $duracionPruebas, $idHistorico, $idTalla, $total) {
+          \DB::table('historico_resumens')->insert(['ID_TALLA' => $idTalla,  'TOTAL' => $total, 'ID_HISTORICO' => $idHistorico,  'DURACION_REQUERIMIENTOS' => $duracionRequerimientos,'DURACION_DISENO' => $duracionDiseno,'DURACION_DESARROLLO' => $duracionDesarrollo, 'DURACION_PRUEBAS' => $duracionPruebas]);
         
       }
 }

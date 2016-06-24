@@ -33,12 +33,20 @@
                  <div class="form-group">
                         <label class="selectContainer" for="selectContainer">Equipo </label>
                         <div class="selectContainer">
-                            <select name="selectTallas" class="form-control">
+                            <select name="equipo" class="form-control">
                                 @foreach($equipos as $equipo)
                                   <option value="{{$equipo->ID_EQUIPO}}">{{$equipo->NOMBRE_EQUIPO}}</option>
                                 @endforeach
                             </select>
                         </div>
+                </div>
+                <div class="form-group @if($errors->has('fechainicio')) has-error @endif">
+                       <label class="fecha" class="fecha" for="fechainicio-field">Fecha estimación</label>
+                    <input type="date" id="fechainicio-field" name="fechainicioestimacion" class=" fecha form-control" value="{{ old("fechainicio") }}"/>
+                       @if($errors->has("fechainicio"))
+                        <span class="help-block">{{ $errors->first("fechainicio") }}</span>
+                       @endif
+               
                 </div>
                  
                 <div class="well well-sm">

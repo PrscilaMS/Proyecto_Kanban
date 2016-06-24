@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Usuario;
+use App\Equipo;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller {
@@ -123,5 +124,46 @@ class UsuarioController extends Controller {
 
 		return redirect()->route('usuarios.index')->with('message', 'Item deleted successfully.');
 	}
+	
+	public	function buscarPorNombreApellido(Request $request)
+	{
+		  $variableBusqueda= $request->input("buscador");
+		  $usuarios = \DB::table('usuarios')->where('NOMBRE_USUARIO','like','%'.$variableBusqueda.'%')->orWhere('APELLIDO','like', '%'.$variableBusqueda.'%')->paginate(10);
+		  
+		  return view('usuarios.privilegios', compact('usuarios'));
+	}
+	
+	public function mostrarEquiposRelacionados(){
+		$correo= 'af';
+		$equiposPrivilegios= \DB::table('usuarios')->join('usuario_equipo','usuarios.CORREO','=', 'usuario_equipo.CORREO')
+							->join('equipos','equipos.ID_EQUIPO', '=', 'usuario_equipo.ID_EQUIPO')
+							->where('usuarios.CORREO', '=', $correo)->paginate(10);
+							
+		$equiposNoPrivilegios= \DB::table('equipos')->leftJoin('usuario_equipo','equipos.ID_EQUIPO','=', 'usuario_equipo.ID_EQUIPO')
+							->paginate(10); 
+							
+							
+		 return view('usuarios.EditarPrivilegios', compact('equiposPrivilegios','equiposNoPrivilegios'));
+	}
+	
+	public function agregarPrivilegios($nombre){
+		$equipo = new Equipo();
+		$equipo = EquipoController::buscarEquipo($nombre);
+		
+		$usuario = new Usuario();
+		$usuario->CORREO= 'af';
+				
+		Usuario::agregarPrivilegio($equipo, $usuario);
+		return $this->mostrarEquiposRelacionados();
+		
+	}
+	public function eliminarPrivilegios($id){
+	    	Usuario::eliminarPrivilegio($id);
+	    		return $this->mostrarEquiposRelacionados();
+	}
+	
+
+	
+	
 
 }

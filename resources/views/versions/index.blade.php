@@ -12,7 +12,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @if($versions->count())
+            @if($versions != null)
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
@@ -34,20 +34,21 @@
                     <td>{{$version->DURACION}}</td>
                     <td>{{$version->FECHA_FINAL}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('versions.show', $version->ID_VERSION) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar</a>
-                                    <a class="btn btn-xs btn-warning" href="{{ route('versions.edit', $version->ID_VERSION) }}"><i class="glyphicon glyphicon-edit"></i> Crear una nueva version</a>
-                                    <form action="{{ route('versions.destroy', $version->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                    <a class="btn btn-xs " href="{{ route('versions.show', $version->ID_VERSION) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar</a>
+                                    <a class="btn btn-xs " href="{{ route('versions.edit', $version->ID_VERSION) }}"><i class="glyphicon glyphicon-edit"></i> Crear una nueva version</a>
+                                    <form action="{{ route('versions.destroy', $version->ID_VERSION) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Esta seguro de eliminar esta versión, le recordamos que todas las versiones posteriores a esta se eliminaran también.')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="idProyecto" value="{{ $idProyecto }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-xs "><i class="glyphicon glyphicon-trash"></i> Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {!! $versions->render() !!}
             @else
-                <h3 class="text-center alert alert-info">Empty!</h3>
+                <h3 class="text-center alert alert-info">No hay registros!</h3>
             @endif
 
         </div>

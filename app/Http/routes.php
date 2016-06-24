@@ -19,6 +19,15 @@ Route::resource("usuarios","UsuarioController");
 
 Route::get("privilegios", array("as"=>"dashboard","uses"=>"UsuarioController@indexPrivilegios"));
 
+Route::get("usuarios_equipos", array("as"=>"dashboard","uses"=>"UsuarioController@mostrarEquiposRelacionados"));
+
+Route::post("buscarPorNombreApellido", array("as"=>"dashboard","uses"=>"UsuarioController@buscarPorNombreApellido"));
+
+Route::post("Agregar_Privilegios/{nombre}", array("as"=>"dashboard","uses"=>"UsuarioController@agregarPrivilegios"));
+
+Route::post("Eliminar_Privilegios/{id}", array("as"=>"dashboard","uses"=>"UsuarioController@eliminarPrivilegios"));
+
+
 Route::resource("proyectos","ProyectoController");
 
 Route::resource("tareas","TareaController");
@@ -39,3 +48,10 @@ Route::patch('historicos/CreateHistorico',[
     'as' => 'historicos/CreateHistorico',
     'uses' => 'HistoricoController@updateCreateHistorico'
 ]);
+
+ Route::get('mostrar-version/{id}', ['as' => 'mostrarVersiones', 'uses' => 'VersionController@mostrarVersiones']);
+ 
+ Route::get('eliminar-version/{id}/{id2}', ['as' => 'eliminarVersiones', 'uses' => 'VersionController@eliminarVersiones']);
+
+ Route::get("estimacionProyecto", array("as"=>"dashboard","uses"=>"ProyectoController@estimacionProyecto"));
+ 

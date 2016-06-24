@@ -28,7 +28,7 @@
             </div>
             
             <div class="well well-sm">
-                <a class="btn " href="{{ route('proyectos.index') }}"><i class=" glyphicon "></i> Terminar  </a>
+                <a class="btn " href="{{URL::to('/') }}/estimacionProyecto"><i class=" glyphicon "></i> Terminar  </a>
                 <button type="submit" class="btn btn-primary">Crear Tarea</button>
                 
             </div>

@@ -28,10 +28,10 @@
                                 <td class="col-md-4">{{$proyecto->NOMBRE_PROYECT}}</td>
                                 <td class="col-md-4">{{$proyecto->FECHA_INICIO}}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('proyectos.show', $proyecto->ID_PROYECTO) }}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar Versiones del Proyecto</a>
+                                    <a class="btn btn-xs btn-primary" href="{{ route ('mostrarVersiones',[$proyecto->ID_PROYECTO])}}"><i class="glyphicon glyphicon-eye-open"></i> Mostrar Versiones del Proyecto</a>
                                 </td>
                             </tr>
-                        @endforeach
+                        @endforeach   
                     </tbody>
                 </table>
                 {!! $proyectos->render() !!}
