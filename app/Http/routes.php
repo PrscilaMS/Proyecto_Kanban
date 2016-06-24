@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+$this->get('/', 'Auth\AuthController@showLoginForm');
+$this->post('login', 'UsuarioController@login');
+$this->get('logout', 'UsuarioController@logout');
 
 Route::resource("usuarios","UsuarioController");
 
 Route::resource("proyectos","ProyectoController");
+
+$this->get('home', 'ProyectoController@home');
 
 Route::resource("tareas","TareaController");
 

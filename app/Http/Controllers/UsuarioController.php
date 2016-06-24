@@ -43,8 +43,7 @@ class UsuarioController extends Controller {
 		$usuario->NOMBRE_USUARIO = $request->input("nombre");
         $usuario->APELLIDO = $request->input("apellidos");
         $usuario->CORREO = $request->input("correo");
-        $contraCrypt = crypt($request->input("contrasena"));
-        $usuario->CONTRASENNA = $contraCrypt;
+        $usuario->CONTRASENNA = $request->input("contrasena");
         $usuario->TIPO = $request->input("tipo");
 		$usuario->save();
 		\Flash::message('Usuario ingresado con éxito');
@@ -89,8 +88,7 @@ class UsuarioController extends Controller {
 		$usuario = Usuario::where('CORREO', $id)->first();
 		$usuario->NOMBRE_USUARIO = $request->input("nombre");
         $usuario->APELLIDO = $request->input("apellidos");
-        $contraCrypt = crypt($request->input("contrasena"));
-        $usuario->CONTRASENNA = $contraCrypt;
+        $usuario->CONTRASENNA = $request->input("contrasena");
         $usuario->TIPO = $request->input("tipo");
         Usuario::modificar($usuario);
 		\Flash::message('Usuario modificado con éxito');
@@ -103,12 +101,35 @@ class UsuarioController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($correo)
 	{
-		$usuario = Usuario::findOrFail($id);
-		$usuario->delete();
-
+		$usuario = Usuario::where('CORREO', '=', $correo)->delete();
 		return redirect()->route('usuarios.index')->with('message', 'Item deleted successfully.');
+	}
+	
+	public function login(Request $request) {
+		$email= $request->input('email');
+		$password = $request->input('password');
+		$usuario = \DB::select('SELECT * FROM  usuarios WHERE CORREO =  ? AND  CONTRASENNA =  ? LIMIT 1', [$email, $password]);
+		 if ($usuario) {
+		 	if ($usuario[0]->TIPO == "admin") {
+		 		$request->session()->put('usuario', $usuario[0]);
+		 		return redirect('/usuarios');
+		 	} else {
+		 			$request->session()->put('usuario', $usuario[0]);
+		 			return redirect('/home');
+		 	}
+		 } else {
+		 	
+		 	$request->session()->put('usuario', '');
+		 	\Flash::error('¡Correo y contraseñas incorrectas!');
+		    return redirect('/');
+		 }
+	}
+	
+	public function logout(Request $request) {
+			$request->session()->put('usuario', '');
+			return redirect('/');
 	}
 
 }

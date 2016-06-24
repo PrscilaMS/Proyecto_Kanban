@@ -137,5 +137,10 @@ class ProyectoController extends Controller {
 
 		return redirect()->route('proyectos.index')->with('message', 'Item deleted successfully.');
 	}
+	
+		public function home()
+	{
+		return view('proyectos.home');
+	}
 
 }

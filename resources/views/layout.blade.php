@@ -8,15 +8,23 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-
     <title>Kanban</title>
 
     <!-- Bootstrap core CSS -->
    <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/main.css" />
      <link rel="stylesheet" href="/css/camposTareas.css" />
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="/css/animate.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<!-- Elegant Icons -->
+	<link rel="stylesheet" type="text/css" href="/fonts/eleganticons/et-icons.css">
+	<!-- Main style -->
+	<link rel="stylesheet" type="text/css" href="/css/cardio.css">
+	<link rel="stylesheet" href="/css/main.css" />
   
     <!-- Custom styles for this template -->
     <!-- <link href="starter-template.css" rel="stylesheet"> -->
@@ -83,7 +91,11 @@
                 
             </ul>
             <li><a href="{{ route('proyectos.index') }}">Proyecto</a></li>
-            
+             @if(session()->get('usuario'))
+                <li><a href="/logout" class="glyphicon glyphicon-log-out"> Salir</a></li>
+                @else 
+                <li><a href="/">Iniciar sesión</a></li>
+                @endif
         </div>
     </nav>
     </div>

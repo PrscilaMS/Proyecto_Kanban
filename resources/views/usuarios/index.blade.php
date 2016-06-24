@@ -46,7 +46,7 @@
                 </table>
                 {!! $usuarios->render() !!}
             @else
-                <h3 class="text-center alert alert-info">No hay usaurios!</h3>
+                <h3 class="text-center alert alert-info">No hay usuarios!</h3>
             @endif
 
         </div>
