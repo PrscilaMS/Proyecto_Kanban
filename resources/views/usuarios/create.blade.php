@@ -43,13 +43,10 @@
                         <span class="help-block">{{ $errors->first("contrasena") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('tipo')) has-error @endif">
-                       <label for="tipo-field">Tipo</label>
-                    <input type="text" id="tipo-field" name="tipo" class="form-control" value="{{ old("tipo") }}"/>
-                       @if($errors->has("tipo"))
-                        <span class="help-block">{{ $errors->first("tipo") }}</span>
-                       @endif
-                    </div>
+                    <select class="selectpicker" name="tipo" id="tipo">
+                        <option value="admin">Administrador</option>
+                        <option value="usuario">Usuario</option>
+                    </select>
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     <a class="btn btn-link pull-right" href="{{ route('usuarios.index') }}"><i class="glyphicon glyphicon-backward"></i> Volver</a>

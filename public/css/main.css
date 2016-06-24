@@ -120,3 +120,78 @@ body {
 .mostarInformacion{
     margin-left: 40vh;
 }
+
+/*Home*/
+.intro-table {
+    border-radius: 1px;
+    margin-left: 2%;
+}
+
+#titulo {
+    margin-left: 30%;
+    color: #2f4050;
+}
+#titulo h3 {
+    margin-left: 20%;
+    margin-bottom: 5%;
+}
+#titulo h1 {
+    margin-left: 7%;
+    font-size: 6vh;
+}
+ .opcion {
+     margin-bottom: 2%;
+ }
+ 
+ .opcion a {
+    width: 90%;
+    margin-bottom: 0;
+    
+ }
+ 
+ .hide-hover {
+    margin-left: 45%;
+    font-size: 3vh;
+ }
+ 
+
+ 
+ .proyectos {
+     font-size: 2vh;
+     margin-left: 10%;
+ }
+ 
+ .historicos {
+     font-size: 2vh;
+     margin-left: 15%;
+ }
+ 
+ .table-historicos {
+     height: 50vh;
+    -webkit-transition: background-image 0.3s ease, background-position 0.3s;
+    transition: background-image 0.3s ease, background-position 0.3s;
+    background-image: url('../img/historicos.jpg');
+    
+}
+ .table-historicos:hover {
+     height: 50vh;
+    -webkit-transition: background-image 0.3s ease, background-position 0.3s;
+    transition: background-image 0.3s ease, background-position 0.3s;
+    background-image: url('../img/historicos-hover.jpg');
+    
+}
+
+ .table-proyectos {
+     height: 50vh;
+    -webkit-transition: background-image 0.3s ease, background-position 0.3s;
+    transition: background-image 0.3s ease, background-position 0.3s;
+    background-image: url('../img/proyectos.jpg');
+    
+}
+ .table-proyectos:hover {
+     height: 50vh;
+    -webkit-transition: background-image 0.3s ease, background-position 0.3s;
+    transition: background-image 0.3s ease, background-position 0.3s;
+    background-image: url('../img/proyectos-hover.jpg');
+    
+}
